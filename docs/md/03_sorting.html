@@ -1,0 +1,1993 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Sorting Algorithms (Algoritma Pengurutan) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'md/03_sorting';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Searching (Pencarian)" href="04_searching.html" />
+    <link rel="prev" title="Infix, Prefix, dan Postfix Expressions" href="02_infix_prefix_postfix.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_stack.html">Stack (Tumpukan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_queue.html">Queue (Antrian)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_infix_prefix_postfix.html">Infix, Prefix, dan Postfix Expressions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Sorting Algorithms (Algoritma Pengurutan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_searching.html">Searching (Pencarian)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_Hashing.html">Materi Hashing</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06_sorting_lanjutan.html">Materi Sorting</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/zeedandp/strukdat.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/zeedandp/strukdat.git/issues/new?title=Issue%20on%20page%20%2Fmd/03_sorting.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/md/03_sorting.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Sorting Algorithms (Algoritma Pengurutan)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-sorting">Pengertian Sorting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pentingnya-sorting">Pentingnya Sorting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-1-bubble-sort">Sorting 1: Bubble Sort</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma">Algoritma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-python">Implementasi Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bubble-sort-sederhana-basic">1. Bubble Sort Sederhana (Basic)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bubble-sort-dengan-optimasi-optimized">2. Bubble Sort dengan Optimasi (Optimized)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bubble-sort-descending-menurun">3. Bubble Sort Descending (Menurun)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bubble-sort-dengan-custom-comparator">4. Bubble Sort dengan Custom Comparator</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bubble-sort-untuk-object-dict">5. Bubble Sort untuk Object/Dict</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bubble-sort-dengan-return-info-debug">6. Bubble Sort dengan Return Info (Debug)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-proses-array-64-34-25-12">Contoh Proses (Array: [64, 34, 25, 12])</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kompleksitas">Kompleksitas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik">Karakteristik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan-dan-kelemahan">Keuntungan dan Kelemahan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-2-selection-sort-insertion-sort">Sorting 2: Selection Sort &amp; Insertion Sort</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-selection-sort">A. Selection Sort</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Pengertian</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Algoritma</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Implementasi Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#selection-sort-sederhana">1. Selection Sort Sederhana</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#selection-sort-dengan-tracking">2. Selection Sort dengan Tracking</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#selection-sort-descending">3. Selection Sort Descending</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#selection-sort-dengan-debug-info">4. Selection Sort dengan Debug Info</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#selection-sort-untuk-object">5. Selection Sort untuk Object</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#selection-sort-dengan-custom-comparator">6. Selection Sort dengan Custom Comparator</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#insertion-sort-standar">2. Insertion Sort Standar</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#insertion-sort-descending">3. Insertion Sort Descending</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#insertion-sort-dengan-debug">4. Insertion Sort dengan Debug</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#insertion-sort-untuk-string">5. Insertion Sort untuk String</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#insertion-sort-untuk-object">6. Insertion Sort untuk Object</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#insertion-sort-dengan-binary-search-kompleks">7. Insertion Sort dengan Binary Search (Kompleks)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#insertion-sort-hybrid-multiple-keys">8. Insertion Sort Hybrid (Multiple Keys)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-sorting-nilai-siswa">2. Aplikasi: Sorting Nilai Siswa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-sorting-transaksi">3. Aplikasi: Sorting Transaksi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-benchmark-sorting-algorithms">4. Aplikasi: Benchmark Sorting Algorithms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-multi-level-sorting">5. Aplikasi: Multi-Level Sorting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-real-time-leaderboard">6. Aplikasi: Real-time Leaderboard</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-event-scheduler">7. Aplikasi: Event Scheduler</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="sorting-algorithms-algoritma-pengurutan">
+<h1>Sorting Algorithms (Algoritma Pengurutan)<a class="headerlink" href="#sorting-algorithms-algoritma-pengurutan" title="Link to this heading">#</a></h1>
+<section id="pengertian-sorting">
+<h2>Pengertian Sorting<a class="headerlink" href="#pengertian-sorting" title="Link to this heading">#</a></h2>
+<p>Sorting adalah proses mengatur kumpulan data dalam urutan tertentu (ascending atau descending). Sorting merupakan salah satu operasi fundamental dalam ilmu komputer yang banyak digunakan dalam aplikasi praktis.</p>
+</section>
+<section id="pentingnya-sorting">
+<h2>Pentingnya Sorting<a class="headerlink" href="#pentingnya-sorting" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Pencarian Lebih Cepat</strong>: Data terurut memungkinkan pencarian binary search yang lebih cepat</p></li>
+<li><p><strong>Analisis Data</strong>: Memudahkan interpretasi dan analisis data</p></li>
+<li><p><strong>Presentasi</strong>: Meningkatkan readability data</p></li>
+<li><p><strong>Optimisasi</strong>: Banyak algoritma memerlukan data yang terurut</p></li>
+<li><p><strong>Aplikasi Praktis</strong>: Digunakan di database, search engines, file systems</p></li>
+</ol>
+</section>
+<section id="sorting-1-bubble-sort">
+<h2>Sorting 1: Bubble Sort<a class="headerlink" href="#sorting-1-bubble-sort" title="Link to this heading">#</a></h2>
+<section id="pengertian">
+<h3>Pengertian<a class="headerlink" href="#pengertian" title="Link to this heading">#</a></h3>
+<p>Bubble Sort membandingkan elemen bersebelahan dan menukarnya jika urutan salah. Proses diulang hingga seluruh array terurut. Nilai terbesar “menggelembung” ke posisi akhirnya pada setiap iterasi.</p>
+</section>
+<section id="algoritma">
+<h3>Algoritma<a class="headerlink" href="#algoritma" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">Mulai</span> <span class="n">dari</span> <span class="n">indeks</span> <span class="mi">0</span>
+<span class="mf">2.</span> <span class="n">Bandingkan</span> <span class="n">elemen</span> <span class="n">i</span> <span class="n">dengan</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+<span class="mf">3.</span> <span class="n">Jika</span> <span class="n">tidak</span> <span class="n">sesuai</span> <span class="n">urutan</span> <span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]),</span> <span class="n">tukar</span>
+<span class="mf">4.</span> <span class="n">Lanjut</span> <span class="n">ke</span> <span class="n">elemen</span> <span class="n">berikutnya</span>
+<span class="mf">5.</span> <span class="n">Ulangi</span> <span class="n">untuk</span> <span class="n">setiap</span> <span class="k">pass</span> <span class="n">hingga</span> <span class="n">tidak</span> <span class="n">ada</span> <span class="n">perubahan</span>
+<span class="mf">6.</span> <span class="n">Setelah</span> <span class="n">setiap</span> <span class="k">pass</span><span class="p">,</span> <span class="n">elemen</span> <span class="n">terbesar</span> <span class="n">sudah</span> <span class="n">pada</span> <span class="n">posisinya</span>
+</pre></div>
+</div>
+</section>
+<section id="implementasi-python">
+<h3>Implementasi Python<a class="headerlink" href="#implementasi-python" title="Link to this heading">#</a></h3>
+<section id="bubble-sort-sederhana-basic">
+<h4>1. Bubble Sort Sederhana (Basic)<a class="headerlink" href="#bubble-sort-sederhana-basic" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bubble_sort_simple</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bubble sort versi paling sederhana&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">arr</span>
+
+<span class="c1"># Test</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bubble_sort_simple</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>  <span class="c1"># Output: [12, 25, 34, 64]</span>
+</pre></div>
+</div>
+</section>
+<section id="bubble-sort-dengan-optimasi-optimized">
+<h4>2. Bubble Sort dengan Optimasi (Optimized)<a class="headerlink" href="#bubble-sort-dengan-optimasi-optimized" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bubble_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bubble sort dengan early termination&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">swapped</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="c1"># Compare adjacent elements</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="c1"># Swap</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">swapped</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="c1"># Jika tidak ada perubahan, array sudah terurut</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">swapped</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">arr</span>
+
+<span class="c1"># Test</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bubble_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>  <span class="c1"># Output: [11, 12, 22, 25, 34, 64, 90]</span>
+</pre></div>
+</div>
+</section>
+<section id="bubble-sort-descending-menurun">
+<h4>3. Bubble Sort Descending (Menurun)<a class="headerlink" href="#bubble-sort-descending-menurun" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bubble_sort_descending</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bubble sort descending (menurun)&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">swapped</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>  <span class="c1"># Rubah ke &lt; untuk descending</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">swapped</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">swapped</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">arr</span>
+
+<span class="c1"># Test</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bubble_sort_descending</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>  <span class="c1"># Output: [64, 34, 25, 12]</span>
+</pre></div>
+</div>
+</section>
+<section id="bubble-sort-dengan-custom-comparator">
+<h4>4. Bubble Sort dengan Custom Comparator<a class="headerlink" href="#bubble-sort-dengan-custom-comparator" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bubble_sort_custom</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bubble sort dengan parameter reverse&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">swapped</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">reverse</span><span class="p">:</span>
+                <span class="n">condition</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">condition</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">swapped</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">swapped</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">arr</span>
+
+<span class="c1"># Test</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bubble_sort_custom</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>           <span class="c1"># [12, 25, 34, 64]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bubble_sort_custom</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>     <span class="c1"># [64, 34, 25, 12]</span>
+</pre></div>
+</div>
+</section>
+<section id="bubble-sort-untuk-object-dict">
+<h4>5. Bubble Sort untuk Object/Dict<a class="headerlink" href="#bubble-sort-untuk-object-dict" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bubble_sort_objects</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bubble sort untuk list of dictionaries&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">swapped</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">key</span><span class="p">:</span>
+                <span class="n">condition</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">key</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">condition</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">swapped</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">swapped</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="c1"># Test</span>
+<span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">85</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">92</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">78</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="c1"># Sort by score</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">bubble_sort_objects</span><span class="p">(</span><span class="n">students</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;score&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">student</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Output: Charlie: 78, Alice: 85, Bob: 92</span>
+</pre></div>
+</div>
+</section>
+<section id="bubble-sort-dengan-return-info-debug">
+<h4>6. Bubble Sort dengan Return Info (Debug)<a class="headerlink" href="#bubble-sort-dengan-return-info-debug" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bubble_sort_debug</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Bubble sort dengan informasi detail&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+    <span class="n">comparisons</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">swaps</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">passes</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">passes</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">swapped</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">comparisons</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">swaps</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">swapped</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">swapped</span><span class="p">:</span>
+            <span class="k">break</span>
+
+    <span class="k">return</span> <span class="n">arr</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s2">&quot;comparisons&quot;</span><span class="p">:</span> <span class="n">comparisons</span><span class="p">,</span>
+        <span class="s2">&quot;swaps&quot;</span><span class="p">:</span> <span class="n">swaps</span><span class="p">,</span>
+        <span class="s2">&quot;passes&quot;</span><span class="p">:</span> <span class="n">passes</span>
+    <span class="p">}</span>
+
+<span class="c1"># Test</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="n">sorted_arr</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">bubble_sort_debug</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sorted: </span><span class="si">{</span><span class="n">sorted_arr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Info: </span><span class="si">{</span><span class="n">info</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Output: Sorted: [12, 25, 34, 64]</span>
+<span class="c1">#         Info: {&#39;comparisons&#39;: 6, &#39;swaps&#39;: 6, &#39;passes&#39;: 4}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="contoh-proses-array-64-34-25-12">
+<h3>Contoh Proses (Array: [64, 34, 25, 12])<a class="headerlink" href="#contoh-proses-array-64-34-25-12" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Pass 1:
+Compare 64 &amp; 34 -&gt; 34, 64 (swap)
+Compare 64 &amp; 25 -&gt; 25, 64 (swap)
+Compare 64 &amp; 12 -&gt; 12, 64 (swap)
+Result: [34, 25, 12, 64]
+
+Pass 2:
+Compare 34 &amp; 25 -&gt; 25, 34 (swap)
+Compare 34 &amp; 12 -&gt; 12, 34 (swap)
+Result: [25, 12, 34, 64]
+
+Pass 3:
+Compare 25 &amp; 12 -&gt; 12, 25 (swap)
+Result: [12, 25, 34, 64]
+
+Pass 4:
+No swaps needed
+Result: [12, 25, 34, 64] ✓ Sorted
+</pre></div>
+</div>
+</section>
+<section id="kompleksitas">
+<h3>Kompleksitas<a class="headerlink" href="#kompleksitas" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspek</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Best Case</p></td>
+<td><p>O(n) - array sudah terurut</p></td>
+</tr>
+<tr class="row-odd"><td><p>Average Case</p></td>
+<td><p>O(n²)</p></td>
+</tr>
+<tr class="row-even"><td><p>Worst Case</p></td>
+<td><p>O(n²) - array terurut terbalik</p></td>
+</tr>
+<tr class="row-odd"><td><p>Space Complexity</p></td>
+<td><p>O(1) - in-place</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="karakteristik">
+<h3>Karakteristik<a class="headerlink" href="#karakteristik" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Stable</strong>: ✓ (mempertahankan urutan elemen yang sama)</p></li>
+<li><p><strong>In-place</strong>: ✓ (tidak perlu array tambahan)</p></li>
+<li><p><strong>Adaptif</strong>: ✓ (lebih cepat jika data sudah terurut)</p></li>
+<li><p><strong>Simpler</strong>: ✓ (mudah dipahami dan diimplementasikan)</p></li>
+</ul>
+</section>
+<section id="keuntungan-dan-kelemahan">
+<h3>Keuntungan dan Kelemahan<a class="headerlink" href="#keuntungan-dan-kelemahan" title="Link to this heading">#</a></h3>
+<p><strong>Keuntungan:</strong></p>
+<ul class="simple">
+<li><p>Implementasi sangat sederhana</p></li>
+<li><p>Tidak memerlukan ruang tambahan</p></li>
+<li><p>Stabil dan efisien untuk data kecil</p></li>
+<li><p>Bisa mendeteksi jika data sudah terurut</p></li>
+</ul>
+<p><strong>Kelemahan:</strong></p>
+<ul class="simple">
+<li><p>Performa buruk untuk data besar (O(n²))</p></li>
+<li><p>Banyak operasi perbandingan dan penukaran</p></li>
+<li><p>Tidak cocok untuk dataset production</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="sorting-2-selection-sort-insertion-sort">
+<h2>Sorting 2: Selection Sort &amp; Insertion Sort<a class="headerlink" href="#sorting-2-selection-sort-insertion-sort" title="Link to this heading">#</a></h2>
+<section id="a-selection-sort">
+<h3>A. Selection Sort<a class="headerlink" href="#a-selection-sort" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h4>Pengertian<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>Selection Sort membagi array menjadi dua bagian: sorted dan unsorted. Setiap iterasi memilih elemen terkecil dari bagian unsorted dan memindahkannya ke akhir bagian sorted.</p>
+</section>
+<section id="id2">
+<h4>Algoritma<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">Mulai</span> <span class="n">dengan</span> <span class="n">array</span> <span class="n">yang</span> <span class="n">belum</span> <span class="n">terurut</span>
+<span class="mf">2.</span> <span class="n">Temukan</span> <span class="n">elemen</span> <span class="n">terkecil</span> <span class="n">di</span> <span class="n">array</span> <span class="n">yang</span> <span class="n">belum</span> <span class="n">disort</span>
+<span class="mf">3.</span> <span class="n">Tukarkan</span> <span class="n">dengan</span> <span class="n">elemen</span> <span class="n">pertama</span> <span class="n">dari</span> <span class="n">bagian</span> <span class="n">unsorted</span>
+<span class="mf">4.</span> <span class="n">Pindahkan</span> <span class="n">batas</span> <span class="n">antara</span> <span class="nb">sorted</span> <span class="n">dan</span> <span class="n">unsorted</span> <span class="n">ke</span> <span class="n">kanan</span> <span class="n">satu</span> <span class="n">posisi</span>
+<span class="mf">5.</span> <span class="n">Ulangi</span> <span class="n">sampai</span> <span class="n">seluruh</span> <span class="n">array</span> <span class="n">terurut</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h4>Implementasi Python<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<section id="selection-sort-sederhana">
+<h5>1. Selection Sort Sederhana<a class="headerlink" href="#selection-sort-sederhana" title="Link to this heading">#</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">selection_sort_simple</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Selection sort versi sederhana&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">min_idx</span> <span class="o">=</span> <span class="n">i</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]:</span>
+                <span class="n">min_idx</span> <span class="o">=</span> <span class="n">j</span>
+
+        <span class="c1"># Tukar</span>
+        <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">arr</span>
+
+<span class="c1"># Test</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">selection_sort_simple</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>  <span class="c1"># Output: [12, 25, 34, 64]</span>
+</pre></div>
+</div>
+</section>
+<section id="selection-sort-dengan-tracking">
+<h5>2. Selection Sort dengan Tracking<a class="headerlink" href="#selection-sort-dengan-tracking" title="Link to this heading">#</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">selection_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Selection sort&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="c1"># Cari elemen minimum dari posisi i ke akhir</span>
+        <span class="n">min_idx</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]:</span>
+                <span class="n">min_idx</span> <span class="o">=</span> <span class="n">j</span>
+
+        <span class="c1"># Tukar elemen ke posisi i</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">min_idx</span><span class="p">:</span>
+            <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">arr</span>
+
+<span class="c1"># Test</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">selection_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>  <span class="c1"># Output: [11, 12, 22, 25, 34, 64, 90]</span>
+</pre></div>
+</div>
+</section>
+<section id="selection-sort-descending">
+<h5>3. Selection Sort Descending<a class="headerlink" href="#selection-sort-descending" title="Link to this heading">#</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">selection_sort_descending</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Selection sort descending&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">max_idx</span> <span class="o">=</span> <span class="n">i</span>  <span class="c1"># Cari MAKSIMUM bukan minimum</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">max_idx</span><span class="p">]:</span>  <span class="c1"># Ubah ke &gt;</span>
+                <span class="n">max_idx</span> <span class="o">=</span> <span class="n">j</span>
+
+        <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">max_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">max_idx</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">arr</span>
+
+<span class="c1"># Test</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">selection_sort_descending</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>  <span class="c1"># Output: [64, 34, 25, 12]</span>
+</pre></div>
+</div>
+</section>
+<section id="selection-sort-dengan-debug-info">
+<h5>4. Selection Sort dengan Debug Info<a class="headerlink" href="#selection-sort-dengan-debug-info" title="Link to this heading">#</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">selection_sort_debug</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Selection sort dengan tracking&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+    <span class="n">comparisons</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">swaps</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">min_idx</span> <span class="o">=</span> <span class="n">i</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">comparisons</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]:</span>
+                <span class="n">min_idx</span> <span class="o">=</span> <span class="n">j</span>
+
+        <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">min_idx</span><span class="p">:</span>
+            <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">swaps</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Swap position </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">min_idx</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">arr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">arr</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s2">&quot;comparisons&quot;</span><span class="p">:</span> <span class="n">comparisons</span><span class="p">,</span>
+        <span class="s2">&quot;swaps&quot;</span><span class="p">:</span> <span class="n">swaps</span><span class="p">,</span>
+        <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="n">steps</span>
+    <span class="p">}</span>
+
+<span class="c1"># Test</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="n">sorted_arr</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">selection_sort_debug</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sorted: </span><span class="si">{</span><span class="n">sorted_arr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Swaps: </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;swaps&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">info</span><span class="p">[</span><span class="s1">&#39;steps&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">step</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="selection-sort-untuk-object">
+<h5>5. Selection Sort untuk Object<a class="headerlink" href="#selection-sort-untuk-object" title="Link to this heading">#</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">selection_sort_objects</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Selection sort untuk list of dictionaries&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">extremum_idx</span> <span class="o">=</span> <span class="n">i</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">key</span><span class="p">:</span>
+                <span class="n">val_extremum</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">extremum_idx</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+                <span class="n">val_j</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">val_extremum</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">extremum_idx</span><span class="p">]</span>
+                <span class="n">val_j</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+            <span class="k">if</span> <span class="n">reverse</span><span class="p">:</span>
+                <span class="n">condition</span> <span class="o">=</span> <span class="n">val_j</span> <span class="o">&gt;</span> <span class="n">val_extremum</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">condition</span> <span class="o">=</span> <span class="n">val_j</span> <span class="o">&lt;</span> <span class="n">val_extremum</span>
+
+            <span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+                <span class="n">extremum_idx</span> <span class="o">=</span> <span class="n">j</span>
+
+        <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">extremum_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">extremum_idx</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="c1"># Test</span>
+<span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">85</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">92</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">78</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">selection_sort_objects</span><span class="p">(</span><span class="n">students</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;score&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="selection-sort-dengan-custom-comparator">
+<h5>6. Selection Sort dengan Custom Comparator<a class="headerlink" href="#selection-sort-dengan-custom-comparator" title="Link to this heading">#</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">score</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">score</span> <span class="o">=</span> <span class="n">score</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">(</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">selection_sort_class</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">compare</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Selection sort dengan custom comparator&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">min_idx</span> <span class="o">=</span> <span class="n">i</span>
+
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">compare</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">compare</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]):</span>
+                    <span class="n">min_idx</span> <span class="o">=</span> <span class="n">j</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]:</span>
+                    <span class="n">min_idx</span> <span class="o">=</span> <span class="n">j</span>
+
+        <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">min_idx</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">arr</span>
+
+<span class="c1"># Test</span>
+<span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">85</span><span class="p">),</span>
+    <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">92</span><span class="p">),</span>
+    <span class="n">Student</span><span class="p">(</span><span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="mi">78</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="c1"># Sort by score</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">selection_sort_class</span><span class="p">(</span><span class="n">students</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span><span class="o">.</span><span class="n">score</span> <span class="o">&lt;</span> <span class="n">b</span><span class="o">.</span><span class="n">score</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>  <span class="c1"># [Charlie(78), Alice(85), Bob(92)]</span>
+<span class="c1">#### Contoh Proses (Array: [64, 34, 25, 12])</span>
+
+</pre></div>
+</div>
+<p>Pass 1: Min = 12 (index 3)
+Tukar dengan 64: [12, 34, 25, 64]</p>
+<p>Pass 2: Min = 25 (index 2)
+Tukar dengan 34: [12, 25, 34, 64]</p>
+<p>Pass 3: Min = 34 (index 2)
+Tidak perlu tukar: [12, 25, 34, 64]</p>
+<p>Pass 4: Done
+Result: [12, 25, 34, 64] ✓ Sorted</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+#### Kompleksitas
+
+| Aspek            | Nilai           |
+| ---------------- | --------------- |
+| Best Case        | O(n²)           |
+| Average Case     | O(n²)           |
+| Worst Case       | O(n²)           |
+| Space Complexity | O(1) - in-place |
+
+#### Karakteristik
+
+- **Stable**: ✗ (bisa mengubah urutan elemen yang sama)
+- **In-place**: ✓ (tidak perlu array tambahan)
+- **Adaptif**: ✗ (selalu O(n²) regardless data)
+- **Jumlah swap minimal**: ✓ (hanya O(n) swaps)
+
+#### Keuntungan dan Kelemahan
+
+**Keuntungan:**
+
+- Jumlah penukaran minimal (O(n))
+- Sederhana untuk diimplementasikan
+- Performa konsisten
+- Efisien untuk memory writes
+
+**Kelemahan:**
+
+- Performa buruk untuk data besar (O(n²))
+- Tidak stabil
+- Harus check seluruh array pada setiap iterasi
+
+---
+
+### B. Insertion Sort
+
+#### Pengertian
+
+Insertion Sort membangun array sorted satu elemen pada satu waktu. Mirip dengan cara mengurutkan kartu di tangan - kita ambil kartu satu per satu dan sisipkan pada posisi yang benar.
+
+#### Algoritma
+
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Mulai dari elemen kedua (index 1)</p></li>
+<li><p>Simpan elemen saat ini sebagai key</p></li>
+<li><p>Bandingkan dengan elemen sebelumnya</p></li>
+<li><p>Geser elemen yang lebih besar ke kanan</p></li>
+<li><p>Sisipkan key di posisi yang benar</p></li>
+<li><p>Ulangi untuk semua elemen</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+#### Implementasi Python
+
+##### 1. Insertion Sort Sederhana
+
+```python
+def insertion_sort_simple(arr):
+    &quot;&quot;&quot;Insertion sort versi sederhana&quot;&quot;&quot;
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+
+        while j &gt;= 0 and arr[j] &gt; key:
+            arr[j + 1] = arr[j]
+            j -= 1
+
+        arr[j + 1] = key
+
+    return arr
+
+# Test
+arr = [64, 34, 25, 12]
+print(insertion_sort_simple(arr))  # Output: [12, 25, 34, 64]
+</pre></div>
+</div>
+</section>
+<section id="insertion-sort-standar">
+<h5>2. Insertion Sort Standar<a class="headerlink" href="#insertion-sort-standar" title="Link to this heading">#</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">insertion_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Insertion sort&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>  <span class="c1"># Elemen yang akan diinsert</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="c1"># Geser elemen yang lebih besar ke kanan</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">:</span>
+            <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="c1"># Insert key pada posisi yang benar</span>
+        <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+    <span class="k">return</span> <span class="n">arr</span>
+
+<span class="c1"># Test</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">90</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">insertion_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>  <span class="c1"># Output: [11, 12, 22, 25, 34, 64, 90]</span>
+</pre></div>
+</div>
+</section>
+<section id="insertion-sort-descending">
+<h5>3. Insertion Sort Descending<a class="headerlink" href="#insertion-sort-descending" title="Link to this heading">#</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">insertion_sort_descending</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Insertion sort descending&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">:</span>  <span class="c1"># Ubah ke &lt;</span>
+            <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+    <span class="k">return</span> <span class="n">arr</span>
+
+<span class="c1"># Test</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">insertion_sort_descending</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>  <span class="c1"># Output: [64, 34, 25, 12]</span>
+</pre></div>
+</div>
+</section>
+<section id="insertion-sort-dengan-debug">
+<h5>4. Insertion Sort dengan Debug<a class="headerlink" href="#insertion-sort-dengan-debug" title="Link to this heading">#</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">insertion_sort_debug</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Insertion sort dengan tracking detail&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+    <span class="n">comparisons</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">shifts</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Insert key=</span><span class="si">{</span><span class="n">key</span><span class="si">}</span><span class="s2"> at position </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">:</span>
+            <span class="n">comparisons</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="n">shifts</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Shift: </span><span class="si">{</span><span class="n">arr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Place key: </span><span class="si">{</span><span class="n">arr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">arr</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s2">&quot;comparisons&quot;</span><span class="p">:</span> <span class="n">comparisons</span><span class="p">,</span>
+        <span class="s2">&quot;shifts&quot;</span><span class="p">:</span> <span class="n">shifts</span><span class="p">,</span>
+        <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="n">steps</span>
+    <span class="p">}</span>
+
+<span class="c1"># Test</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">]</span>
+<span class="n">sorted_arr</span><span class="p">,</span> <span class="n">info</span> <span class="o">=</span> <span class="n">insertion_sort_debug</span><span class="p">(</span><span class="n">arr</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sorted: </span><span class="si">{</span><span class="n">sorted_arr</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Comparisons: </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;comparisons&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">, Shifts: </span><span class="si">{</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;shifts&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="insertion-sort-untuk-string">
+<h5>5. Insertion Sort untuk String<a class="headerlink" href="#insertion-sort-untuk-string" title="Link to this heading">#</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">insertion_sort_strings</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Insertion sort untuk string array&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">reverse</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">:</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">:</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+
+        <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+    <span class="k">return</span> <span class="n">arr</span>
+
+<span class="c1"># Test</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;zebra&quot;</span><span class="p">,</span> <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;mango&quot;</span><span class="p">,</span> <span class="s2">&quot;banana&quot;</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">insertion_sort_strings</span><span class="p">(</span><span class="n">words</span><span class="p">))</span>         <span class="c1"># [apple, banana, mango, zebra]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">insertion_sort_strings</span><span class="p">(</span><span class="n">words</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>   <span class="c1"># [zebra, mango, banana, apple]</span>
+</pre></div>
+</div>
+</section>
+<section id="insertion-sort-untuk-object">
+<h5>6. Insertion Sort untuk Object<a class="headerlink" href="#insertion-sort-untuk-object" title="Link to this heading">#</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">insertion_sort_objects</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Insertion sort untuk list of dictionaries&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">key</span><span class="p">:</span>
+                <span class="n">compare_val</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">key</span><span class="p">]</span>
+                <span class="n">curr_val</span> <span class="o">=</span> <span class="n">curr</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">compare_val</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">curr_val</span> <span class="o">=</span> <span class="n">curr</span>
+
+            <span class="k">if</span> <span class="n">reverse</span><span class="p">:</span>
+                <span class="n">condition</span> <span class="o">=</span> <span class="n">compare_val</span> <span class="o">&lt;</span> <span class="n">curr_val</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">condition</span> <span class="o">=</span> <span class="n">compare_val</span> <span class="o">&gt;</span> <span class="n">curr_val</span>
+
+            <span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">curr</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="c1"># Test</span>
+<span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">85</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">92</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="mi">78</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">insertion_sort_objects</span><span class="p">(</span><span class="n">students</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="s2">&quot;score&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Output: Charlie: 78, Alice: 85, Bob: 92</span>
+</pre></div>
+</div>
+</section>
+<section id="insertion-sort-dengan-binary-search-kompleks">
+<h5>7. Insertion Sort dengan Binary Search (Kompleks)<a class="headerlink" href="#insertion-sort-dengan-binary-search-kompleks" title="Link to this heading">#</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cari posisi insert menggunakan binary search&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="n">end</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">start</span> <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span> <span class="k">else</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">start</span>
+
+    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="n">end</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+
+    <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">mid</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">insertion_sort_binary</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Insertion sort dengan binary search untuk menemukan posisi&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+        <span class="c1"># Cari posisi dengan binary search</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+        <span class="c1"># Geser elemen</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+
+        <span class="n">arr</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+    <span class="k">return</span> <span class="n">arr</span>
+
+<span class="c1"># Test</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">64</span><span class="p">,</span> <span class="mi">34</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">22</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">insertion_sort_binary</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span>  <span class="c1"># Output: [12, 22, 25, 34, 64]</span>
+</pre></div>
+</div>
+</section>
+<section id="insertion-sort-hybrid-multiple-keys">
+<h5>8. Insertion Sort Hybrid (Multiple Keys)<a class="headerlink" href="#insertion-sort-hybrid-multiple-keys" title="Link to this heading">#</a></h5>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">insertion_sort_multi_key</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">keys</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Insertion sort dengan multiple keys (tuple comparison)&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># Bandingkan multiple keys</span>
+            <span class="n">compare</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">)</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">current</span> <span class="o">&gt;</span> <span class="n">compare</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="c1"># Test</span>
+<span class="n">students</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;dept&quot;</span><span class="p">:</span> <span class="s2">&quot;CS&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;dept&quot;</span><span class="p">:</span> <span class="s2">&quot;CS&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;dept&quot;</span><span class="p">:</span> <span class="s2">&quot;EE&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;dept&quot;</span><span class="p">:</span> <span class="s2">&quot;CS&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;David&quot;</span><span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">result</span> <span class="o">=</span> <span class="n">insertion_sort_multi_key</span><span class="p">(</span><span class="n">students</span><span class="p">,</span> <span class="p">[</span><span class="s2">&quot;dept&quot;</span><span class="p">,</span> <span class="s2">&quot;year&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;dept&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> Year </span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1">#### Contoh Proses (Array: [64, 34, 25, 12])</span>
+
+</pre></div>
+</div>
+<p>Initial: [64, 34, 25, 12]
+Sorted: [64] Unsorted: [34, 25, 12]</p>
+<p>i=1: key=34
+34 &lt; 64, geser 64 ke kanan
+Result: [34, 64, 25, 12]
+Sorted: [34, 64]</p>
+<p>i=2: key=25
+25 &lt; 64, geser 64 ke kanan
+25 &lt; 34, geser 34 ke kanan
+Result: [25, 34, 64, 12]
+Sorted: [25, 34, 64]</p>
+<p>i=3: key=12
+12 &lt; 64, geser 64 ke kanan
+12 &lt; 34, geser 34 ke kanan
+12 &lt; 25, geser 25 ke kanan
+Result: [12, 25, 34, 64]
+Sorted: [12, 25, 34, 64] ✓</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+#### Kompleksitas
+
+| Aspek            | Nilai                          |
+| ---------------- | ------------------------------ |
+| Best Case        | O(n) - array sudah terurut     |
+| Average Case     | O(n²)                          |
+| Worst Case       | O(n²) - array terurut terbalik |
+| Space Complexity | O(1) - in-place                |
+
+#### Karakteristik
+
+- **Stable**: ✓ (mempertahankan urutan elemen yang sama)
+- **In-place**: ✓ (tidak perlu array tambahan)
+- **Adaptif**: ✓ (lebih cepat jika data sudah terurut, O(n))
+- **Online**: ✓ (bisa mengurutkan data seiring diterimanya)
+
+#### Keuntungan dan Kelemahan
+
+**Keuntungan:**
+
+- Sangat efisien untuk data kecil atau semi-terurut
+- Stabil dan in-place
+- Sederhana untuk diimplementasikan
+- Baik untuk array yang hampir terurut
+- Cocok untuk digunakan dalam Timsort hybrid sort
+
+**Kelemahan:**
+
+- Performa buruk untuk data besar (O(n²))
+- Banyak pergeseran elemen
+
+---
+
+## Perbandingan Ketiga Algoritma
+
+### Kompleksitas
+
+| Algoritma      | Best  | Average | Worst | Space |
+| -------------- | ----- | ------- | ----- | ----- |
+| Bubble Sort    | O(n)  | O(n²)   | O(n²) | O(1)  |
+| Selection Sort | O(n²) | O(n²)   | O(n²) | O(1)  |
+| Insertion Sort | O(n)  | O(n²)   | O(n²) | O(1)  |
+
+### Karakteristik
+
+| Algoritma      | Stable | In-place | Adaptif | Jumlah Swap |
+| -------------- | ------ | -------- | ------- | ----------- |
+| Bubble Sort    | ✓      | ✓        | ✓       | Banyak      |
+| Selection Sort | ✗      | ✓        | ✗       | Minimal     |
+| Insertion Sort | ✓      | ✓        | ✓       | Medium      |
+
+### Kapan Menggunakan?
+
+| Situasi                  | Algoritma                       |
+| ------------------------ | ------------------------------- |
+| Data kecil (≤ 50 elemen) | Insertion Sort &gt; Bubble Sort    |
+| Data hampir terurut      | Insertion Sort                  |
+| Data acak                | Selection Sort (minimal swap)   |
+| Perlu stabil             | Bubble Sort atau Insertion Sort |
+| Perlu minimal swap       | Selection Sort                  |
+| Learning purpose         | Bubble Sort                     |
+
+---
+
+## Contoh Program Lengkap &amp; Aplikasi Praktis
+
+### 1. Sorting dengan Debug &amp; Visualisasi
+
+```python
+def bubble_sort_debug(arr):
+    &quot;&quot;&quot;Bubble sort dengan debugging info&quot;&quot;&quot;
+    n = len(arr)
+    print(f&quot;Array awal: {arr}\n&quot;)
+
+    for i in range(n):
+        print(f&quot;Pass {i+1}:&quot;)
+        swapped = False
+
+        for j in range(0, n - i - 1):
+            if arr[j] &gt; arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+                swapped = True
+                print(f&quot;  Swap {arr[j+1]} dan {arr[j]}: {arr}&quot;)
+
+        if not swapped:
+            print(&quot;  No swaps - array sudah terurut!&quot;)
+            break
+        else:
+            print(f&quot;  State: {arr}\n&quot;)
+
+    return arr
+
+def selection_sort_debug(arr):
+    &quot;&quot;&quot;Selection sort dengan debugging info&quot;&quot;&quot;
+    n = len(arr)
+    print(f&quot;Array awal: {arr}\n&quot;)
+
+    for i in range(n):
+        min_idx = i
+        for j in range(i + 1, n):
+            if arr[j] &lt; arr[min_idx]:
+                min_idx = j
+
+        if i != min_idx:
+            arr[i], arr[min_idx] = arr[min_idx], arr[i]
+            print(f&quot;Pass {i+1}: Swap {arr[min_idx]} dengan {arr[i]}&quot;)
+
+        print(f&quot;  State: {arr}\n&quot;)
+
+    return arr
+
+def insertion_sort_debug(arr):
+    &quot;&quot;&quot;Insertion sort dengan debugging info&quot;&quot;&quot;
+    n = len(arr)
+    print(f&quot;Array awal: {arr}\n&quot;)
+
+    for i in range(1, n):
+        key = arr[i]
+        j = i - 1
+        print(f&quot;Iterasi {i}: Insert {key}&quot;)
+
+        while j &gt;= 0 and arr[j] &gt; key:
+            arr[j + 1] = arr[j]
+            j -= 1
+
+        arr[j + 1] = key
+        print(f&quot;  State: {arr}\n&quot;)
+
+    return arr
+
+# Test Bubble Sort
+print(&quot;=== BUBBLE SORT ===&quot;)
+arr1 = [64, 34, 25, 12]
+bubble_sort_debug(arr1)
+
+print(&quot;\n=== SELECTION SORT ===&quot;)
+arr2 = [64, 34, 25, 12]
+selection_sort_debug(arr2)
+
+print(&quot;\n=== INSERTION SORT ===&quot;)
+arr3 = [64, 34, 25, 12]
+insertion_sort_debug(arr3)
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="aplikasi-sorting-nilai-siswa">
+<h3>2. Aplikasi: Sorting Nilai Siswa<a class="headerlink" href="#aplikasi-sorting-nilai-siswa" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">StudentGradeManager</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">students</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_student</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">score</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tambah siswa&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">students</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">score</span><span class="p">})</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">sort_by_score_ascending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sort nilai ascending (terendah ke tertinggi)&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">insertion_sort_objects</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">students</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+            <span class="n">key</span><span class="o">=</span><span class="s2">&quot;score&quot;</span><span class="p">,</span>
+            <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">sort_by_score_descending</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sort nilai descending (tertinggi ke terendah)&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">insertion_sort_objects</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">students</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+            <span class="n">key</span><span class="o">=</span><span class="s2">&quot;score&quot;</span><span class="p">,</span>
+            <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">sort_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sort berdasarkan nama (alphabetical)&quot;&quot;&quot;</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">students</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+
+            <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]:</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+
+            <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+        <span class="k">return</span> <span class="n">arr</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">display_ranking</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tampilkan ranking siswa&quot;&quot;&quot;</span>
+        <span class="n">sorted_students</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sort_by_score_descending</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== RANKING SISWA ===&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">student</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sorted_students</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">student</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Penggunaan</span>
+<span class="n">manager</span> <span class="o">=</span> <span class="n">StudentGradeManager</span><span class="p">()</span>
+<span class="n">manager</span><span class="o">.</span><span class="n">add_student</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="mi">85</span><span class="p">)</span>
+<span class="n">manager</span><span class="o">.</span><span class="n">add_student</span><span class="p">(</span><span class="s2">&quot;Bob&quot;</span><span class="p">,</span> <span class="mi">92</span><span class="p">)</span>
+<span class="n">manager</span><span class="o">.</span><span class="n">add_student</span><span class="p">(</span><span class="s2">&quot;Charlie&quot;</span><span class="p">,</span> <span class="mi">78</span><span class="p">)</span>
+<span class="n">manager</span><span class="o">.</span><span class="n">add_student</span><span class="p">(</span><span class="s2">&quot;David&quot;</span><span class="p">,</span> <span class="mi">88</span><span class="p">)</span>
+
+<span class="n">manager</span><span class="o">.</span><span class="n">display_ranking</span><span class="p">()</span>
+<span class="c1"># Output:</span>
+<span class="c1"># === RANKING SISWA ===</span>
+<span class="c1"># 1. Bob: 92</span>
+<span class="c1"># 2. David: 88</span>
+<span class="c1"># 3. Alice: 85</span>
+<span class="c1"># 4. Charlie: 78</span>
+</pre></div>
+</div>
+</section>
+<section id="aplikasi-sorting-transaksi">
+<h3>3. Aplikasi: Sorting Transaksi<a class="headerlink" href="#aplikasi-sorting-transaksi" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TransactionSorter</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sort_by_amount</span><span class="p">(</span><span class="n">transactions</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sort transaksi berdasarkan jumlah&quot;&quot;&quot;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">transactions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+
+            <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">reverse</span><span class="p">:</span>
+                    <span class="n">condition</span> <span class="o">=</span> <span class="n">transactions</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s2">&quot;amount&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">[</span><span class="s2">&quot;amount&quot;</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">condition</span> <span class="o">=</span> <span class="n">transactions</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s2">&quot;amount&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">[</span><span class="s2">&quot;amount&quot;</span><span class="p">]</span>
+
+                <span class="k">if</span> <span class="n">condition</span><span class="p">:</span>
+                    <span class="n">transactions</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">transactions</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                    <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+            <span class="n">transactions</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+        <span class="k">return</span> <span class="n">transactions</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sort_by_date</span><span class="p">(</span><span class="n">transactions</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sort transaksi berdasarkan tanggal&quot;&quot;&quot;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">transactions</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">transactions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+
+            <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">transactions</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s2">&quot;date&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]:</span>
+                <span class="n">transactions</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">transactions</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+
+            <span class="n">transactions</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+        <span class="k">return</span> <span class="n">transactions</span>
+
+<span class="c1"># Penggunaan</span>
+<span class="n">transactions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2026-04-03&quot;</span><span class="p">,</span> <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">500000</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2026-04-01&quot;</span><span class="p">,</span> <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">1000000</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="s2">&quot;2026-04-02&quot;</span><span class="p">,</span> <span class="s2">&quot;amount&quot;</span><span class="p">:</span> <span class="mi">250000</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="c1"># Sort by amount</span>
+<span class="n">sorted_amt</span> <span class="o">=</span> <span class="n">TransactionSorter</span><span class="o">.</span><span class="n">sort_by_amount</span><span class="p">(</span><span class="n">transactions</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span> <span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sort by Amount (Descending):&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">sorted_amt</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: Rp </span><span class="si">{</span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;amount&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Sort by date</span>
+<span class="n">sorted_date</span> <span class="o">=</span> <span class="n">TransactionSorter</span><span class="o">.</span><span class="n">sort_by_date</span><span class="p">(</span><span class="n">transactions</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sort by Date:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">sorted_date</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: Rp </span><span class="si">{</span><span class="n">t</span><span class="p">[</span><span class="s1">&#39;amount&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="aplikasi-benchmark-sorting-algorithms">
+<h3>4. Aplikasi: Benchmark Sorting Algorithms<a class="headerlink" href="#aplikasi-benchmark-sorting-algorithms" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SortingBenchmark</span><span class="p">:</span>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">benchmark_sorting</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">sort_func</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Mulai waktu eksekusi sorting&quot;&quot;&quot;</span>
+        <span class="n">arr_copy</span> <span class="o">=</span> <span class="n">arr</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+        <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">sort_func</span><span class="p">(</span><span class="n">arr_copy</span><span class="p">)</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+
+        <span class="n">elapsed</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">*</span> <span class="mi">1000</span>  <span class="c1"># Convert to milliseconds</span>
+
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;algorithm&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span>
+            <span class="s2">&quot;time_ms&quot;</span><span class="p">:</span> <span class="n">elapsed</span><span class="p">,</span>
+            <span class="s2">&quot;sorted&quot;</span><span class="p">:</span> <span class="n">arr_copy</span>
+        <span class="p">}</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compare_algorithms</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Bandingkan semua algoritma&quot;&quot;&quot;</span>
+        <span class="n">algorithms</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">bubble_sort</span><span class="p">,</span> <span class="s2">&quot;Bubble Sort&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">selection_sort</span><span class="p">,</span> <span class="s2">&quot;Selection Sort&quot;</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">insertion_sort</span><span class="p">,</span> <span class="s2">&quot;Insertion Sort&quot;</span><span class="p">)</span>
+        <span class="p">]</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Array size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">func</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">algorithms</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">SortingBenchmark</span><span class="o">.</span><span class="n">benchmark_sorting</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;time_ms&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ms&quot;</span><span class="p">)</span>
+
+        <span class="c1"># Cari tercepat</span>
+        <span class="n">fastest</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;time_ms&#39;</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Fastest: </span><span class="si">{</span><span class="n">fastest</span><span class="p">[</span><span class="s1">&#39;algorithm&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">fastest</span><span class="p">[</span><span class="s1">&#39;time_ms&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> ms)&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">results</span>
+
+<span class="c1"># Test dengan array random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="n">random_arr</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== SORTING ALGORITHM COMPARISON ===</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">SortingBenchmark</span><span class="o">.</span><span class="n">compare_algorithms</span><span class="p">(</span><span class="n">random_arr</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="aplikasi-multi-level-sorting">
+<h3>5. Aplikasi: Multi-Level Sorting<a class="headerlink" href="#aplikasi-multi-level-sorting" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sort_by_multiple_fields</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">fields</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sort data dengan multiple fields (priority-based)&quot;&quot;&quot;</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+
+        <span class="c1"># Compare menggunakan multiple fields</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">should_swap</span> <span class="o">=</span> <span class="kc">False</span>
+
+            <span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">fields</span><span class="p">:</span>
+                <span class="n">key_val</span> <span class="o">=</span> <span class="n">key</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+                <span class="n">curr_val</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="n">curr_val</span> <span class="o">&gt;</span> <span class="n">key_val</span><span class="p">:</span>
+                    <span class="n">should_swap</span> <span class="o">=</span> <span class="kc">True</span>
+                    <span class="k">break</span>
+                <span class="k">elif</span> <span class="n">curr_val</span> <span class="o">&lt;</span> <span class="n">key_val</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+            <span class="k">if</span> <span class="n">should_swap</span><span class="p">:</span>
+                <span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="n">data</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+    <span class="k">return</span> <span class="n">data</span>
+
+<span class="c1"># Test</span>
+<span class="n">employees</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;dept&quot;</span><span class="p">:</span> <span class="s2">&quot;IT&quot;</span><span class="p">,</span> <span class="s2">&quot;salary&quot;</span><span class="p">:</span> <span class="mi">50000</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;dept&quot;</span><span class="p">:</span> <span class="s2">&quot;IT&quot;</span><span class="p">,</span> <span class="s2">&quot;salary&quot;</span><span class="p">:</span> <span class="mi">55000</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Bob&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;dept&quot;</span><span class="p">:</span> <span class="s2">&quot;HR&quot;</span><span class="p">,</span> <span class="s2">&quot;salary&quot;</span><span class="p">:</span> <span class="mi">45000</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Charlie&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;dept&quot;</span><span class="p">:</span> <span class="s2">&quot;IT&quot;</span><span class="p">,</span> <span class="s2">&quot;salary&quot;</span><span class="p">:</span> <span class="mi">50000</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;David&quot;</span><span class="p">},</span>
+<span class="p">]</span>
+
+<span class="c1"># Sort by department first, then by salary, then by name</span>
+<span class="n">sorted_emp</span> <span class="o">=</span> <span class="n">sort_by_multiple_fields</span><span class="p">(</span>
+    <span class="n">employees</span><span class="o">.</span><span class="n">copy</span><span class="p">(),</span>
+    <span class="p">[</span><span class="s2">&quot;dept&quot;</span><span class="p">,</span> <span class="s2">&quot;salary&quot;</span><span class="p">,</span> <span class="s2">&quot;name&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== SORTED EMPLOYEES ===&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">emp</span> <span class="ow">in</span> <span class="n">sorted_emp</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">emp</span><span class="p">[</span><span class="s1">&#39;dept&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">emp</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> ($</span><span class="si">{</span><span class="n">emp</span><span class="p">[</span><span class="s1">&#39;salary&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="aplikasi-real-time-leaderboard">
+<h3>6. Aplikasi: Real-time Leaderboard<a class="headerlink" href="#aplikasi-real-time-leaderboard" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Leaderboard</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">players</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_player</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">score</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tambah pemain dengan score&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">players</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">score</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_leaderboard</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">new_score</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Update score pemain&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">player</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">players</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">player</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
+                <span class="n">player</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_score</span>
+                <span class="k">break</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_leaderboard</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_leaderboard</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sort leaderboard&quot;&quot;&quot;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">players</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">players</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+
+            <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">players</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s2">&quot;score&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">]:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">players</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">players</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">players</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">top_n</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tampilkan leaderboard&quot;&quot;&quot;</span>
+        <span class="n">display_players</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">players</span><span class="p">[:</span><span class="n">top_n</span><span class="p">]</span> <span class="k">if</span> <span class="n">top_n</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">players</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== LEADERBOARD ===&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">player</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">display_players</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2">. </span><span class="si">{</span><span class="n">player</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">player</span><span class="p">[</span><span class="s1">&#39;score&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> pts&quot;</span><span class="p">)</span>
+
+<span class="c1"># Test</span>
+<span class="n">leaderboard</span> <span class="o">=</span> <span class="n">Leaderboard</span><span class="p">()</span>
+<span class="n">leaderboard</span><span class="o">.</span><span class="n">add_player</span><span class="p">(</span><span class="s2">&quot;Player1&quot;</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">leaderboard</span><span class="o">.</span><span class="n">add_player</span><span class="p">(</span><span class="s2">&quot;Player2&quot;</span><span class="p">,</span> <span class="mi">250</span><span class="p">)</span>
+<span class="n">leaderboard</span><span class="o">.</span><span class="n">add_player</span><span class="p">(</span><span class="s2">&quot;Player3&quot;</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
+<span class="n">leaderboard</span><span class="o">.</span><span class="n">add_player</span><span class="p">(</span><span class="s2">&quot;Player4&quot;</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+
+<span class="n">leaderboard</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+<span class="c1"># Output:</span>
+<span class="c1"># === LEADERBOARD ===</span>
+<span class="c1"># 1. Player2: 250 pts</span>
+<span class="c1"># 2. Player4: 200 pts</span>
+<span class="c1"># 3. Player3: 150 pts</span>
+<span class="c1"># 4. Player1: 100 pts</span>
+</pre></div>
+</div>
+</section>
+<section id="aplikasi-event-scheduler">
+<h3>7. Aplikasi: Event Scheduler<a class="headerlink" href="#aplikasi-event-scheduler" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">EventScheduler</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">events</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_event</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">date</span><span class="p">,</span> <span class="n">time</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tambah event&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="o">.</span><span class="n">append</span><span class="p">({</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="n">name</span><span class="p">,</span> <span class="s2">&quot;date&quot;</span><span class="p">:</span> <span class="n">date</span><span class="p">,</span> <span class="s2">&quot;time&quot;</span><span class="p">:</span> <span class="n">time</span><span class="p">})</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">sort_by_date</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Sort event berdasarkan tanggal dan waktu&quot;&quot;&quot;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+
+            <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">curr_date</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s2">&quot;date&quot;</span><span class="p">]</span>
+                <span class="n">curr_time</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s2">&quot;time&quot;</span><span class="p">]</span>
+                <span class="n">key_date</span> <span class="o">=</span> <span class="n">key</span><span class="p">[</span><span class="s2">&quot;date&quot;</span><span class="p">]</span>
+                <span class="n">key_time</span> <span class="o">=</span> <span class="n">key</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span>
+
+                <span class="c1"># Compare date first, then time</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">curr_date</span> <span class="o">&gt;</span> <span class="n">key_date</span><span class="p">)</span> <span class="ow">or</span> \
+                   <span class="p">(</span><span class="n">curr_date</span> <span class="o">==</span> <span class="n">key_date</span> <span class="ow">and</span> <span class="n">curr_time</span> <span class="o">&gt;</span> <span class="n">key_time</span><span class="p">):</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                    <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">break</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">events</span><span class="p">[</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">events</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">display_schedule</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tampilkan jadwal event&quot;&quot;&quot;</span>
+        <span class="n">sorted_events</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sort_by_date</span><span class="p">()</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== EVENT SCHEDULE ===&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">event</span> <span class="ow">in</span> <span class="n">sorted_events</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">event</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">event</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">event</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Test</span>
+<span class="n">scheduler</span> <span class="o">=</span> <span class="n">EventScheduler</span><span class="p">()</span>
+<span class="n">scheduler</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="s2">&quot;Meeting&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-04-09&quot;</span><span class="p">,</span> <span class="s2">&quot;14:00&quot;</span><span class="p">)</span>
+<span class="n">scheduler</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="s2">&quot;Lunch&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-04-09&quot;</span><span class="p">,</span> <span class="s2">&quot;12:00&quot;</span><span class="p">)</span>
+<span class="n">scheduler</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="s2">&quot;Presentation&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-04-10&quot;</span><span class="p">,</span> <span class="s2">&quot;09:00&quot;</span><span class="p">)</span>
+<span class="n">scheduler</span><span class="o">.</span><span class="n">add_event</span><span class="p">(</span><span class="s2">&quot;Workshop&quot;</span><span class="p">,</span> <span class="s2">&quot;2026-04-09&quot;</span><span class="p">,</span> <span class="s2">&quot;16:00&quot;</span><span class="p">)</span>
+
+<span class="n">scheduler</span><span class="o">.</span><span class="n">display_schedule</span><span class="p">()</span>
+<span class="c1"># Output:</span>
+<span class="c1"># === EVENT SCHEDULE ===</span>
+<span class="c1"># 2026-04-09 12:00: Lunch</span>
+<span class="c1"># 2026-04-09 14:00: Meeting</span>
+<span class="c1"># 2026-04-09 16:00: Workshop</span>
+<span class="c1"># 2026-04-10 09:00: Presentation</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="kesimpulan">
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Ketiga algoritma sorting ini adalah dasar dalam ilmu komputer:</p>
+<ol class="arabic simple">
+<li><p><strong>Bubble Sort</strong>: Mudah dipahami, cocok untuk pembelajaran, performa buruk untuk data besar</p></li>
+<li><p><strong>Selection Sort</strong>: Jumlah swap minimal, performa konsisten O(n²)</p></li>
+<li><p><strong>Insertion Sort</strong>: Paling efisien di antara ketiganya untuk data kecil/semi-terurut</p></li>
+</ol>
+<p>Untuk dataset production yang besar, digunakan algoritma lebih canggih seperti Merge Sort, Quick Sort, atau Hybrid Sort (Timsort, Introsort).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./md"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="02_infix_prefix_postfix.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Infix, Prefix, dan Postfix Expressions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="04_searching.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Searching (Pencarian)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-sorting">Pengertian Sorting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pentingnya-sorting">Pentingnya Sorting</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-1-bubble-sort">Sorting 1: Bubble Sort</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algoritma">Algoritma</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-python">Implementasi Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bubble-sort-sederhana-basic">1. Bubble Sort Sederhana (Basic)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bubble-sort-dengan-optimasi-optimized">2. Bubble Sort dengan Optimasi (Optimized)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bubble-sort-descending-menurun">3. Bubble Sort Descending (Menurun)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bubble-sort-dengan-custom-comparator">4. Bubble Sort dengan Custom Comparator</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bubble-sort-untuk-object-dict">5. Bubble Sort untuk Object/Dict</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bubble-sort-dengan-return-info-debug">6. Bubble Sort dengan Return Info (Debug)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-proses-array-64-34-25-12">Contoh Proses (Array: [64, 34, 25, 12])</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kompleksitas">Kompleksitas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik">Karakteristik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan-dan-kelemahan">Keuntungan dan Kelemahan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sorting-2-selection-sort-insertion-sort">Sorting 2: Selection Sort &amp; Insertion Sort</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-selection-sort">A. Selection Sort</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Pengertian</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Algoritma</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Implementasi Python</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#selection-sort-sederhana">1. Selection Sort Sederhana</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#selection-sort-dengan-tracking">2. Selection Sort dengan Tracking</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#selection-sort-descending">3. Selection Sort Descending</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#selection-sort-dengan-debug-info">4. Selection Sort dengan Debug Info</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#selection-sort-untuk-object">5. Selection Sort untuk Object</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#selection-sort-dengan-custom-comparator">6. Selection Sort dengan Custom Comparator</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#insertion-sort-standar">2. Insertion Sort Standar</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#insertion-sort-descending">3. Insertion Sort Descending</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#insertion-sort-dengan-debug">4. Insertion Sort dengan Debug</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#insertion-sort-untuk-string">5. Insertion Sort untuk String</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#insertion-sort-untuk-object">6. Insertion Sort untuk Object</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#insertion-sort-dengan-binary-search-kompleks">7. Insertion Sort dengan Binary Search (Kompleks)</a></li>
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#insertion-sort-hybrid-multiple-keys">8. Insertion Sort Hybrid (Multiple Keys)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-sorting-nilai-siswa">2. Aplikasi: Sorting Nilai Siswa</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-sorting-transaksi">3. Aplikasi: Sorting Transaksi</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-benchmark-sorting-algorithms">4. Aplikasi: Benchmark Sorting Algorithms</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-multi-level-sorting">5. Aplikasi: Multi-Level Sorting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-real-time-leaderboard">6. Aplikasi: Real-time Leaderboard</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-event-scheduler">7. Aplikasi: Event Scheduler</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Muhammad Zidan Dhikrulloh Perdana
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

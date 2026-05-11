@@ -1,0 +1,17 @@
+﻿format: jb-book
+root: intro
+chapters:
+- file: md/00_stack
+  title: "Stack (Tumpukan)"
+- file: md/01_queue
+  title: "Queue (Antrian)"
+- file: md/02_infix_prefix_postfix
+  title: "Infix, Prefix, dan Postfix Expressions"
+- file: md/03_sorting
+  title: "Sorting Algorithms (Algoritma Pengurutan)"
+- file: md/04_searching
+  title: "Searching (Pencarian)"
+- file: md/05_Hashing
+  title: "Materi Hashing"
+- file: md/06_sorting_lanjutan
+  title: "Materi Sorting"

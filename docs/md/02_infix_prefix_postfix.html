@@ -1,0 +1,1376 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Infix, Prefix, dan Postfix Expressions &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'md/02_infix_prefix_postfix';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sorting Algorithms (Algoritma Pengurutan)" href="03_sorting.html" />
+    <link rel="prev" title="Queue (Antrian)" href="01_queue.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_stack.html">Stack (Tumpukan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_queue.html">Queue (Antrian)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Infix, Prefix, dan Postfix Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_sorting.html">Sorting Algorithms (Algoritma Pengurutan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_searching.html">Searching (Pencarian)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_Hashing.html">Materi Hashing</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06_sorting_lanjutan.html">Materi Sorting</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/zeedandp/strukdat.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/zeedandp/strukdat.git/issues/new?title=Issue%20on%20page%20%2Fmd/02_infix_prefix_postfix.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/md/02_infix_prefix_postfix.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Infix, Prefix, dan Postfix Expressions</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-notasi-ekspresi">Pengertian Notasi Ekspresi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#infix-notation-notasi-infix">1. Infix Notation (Notasi Infix)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#format">Format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh">Contoh</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik">Karakteristik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aturan-prioritas-operator-precedence">Aturan Prioritas Operator (Precedence)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aturan-asosiasi-associativity">Aturan Asosiasi (Associativity)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prefix-notation-polish-notation">2. Prefix Notation (Polish Notation)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Contoh</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Karakteristik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-prefix">Evaluasi Prefix</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postfix-notation-reverse-polish-notation">3. Postfix Notation (Reverse Polish Notation)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Contoh</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Karakteristik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-postfix">Evaluasi Postfix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-penuh-input-a-b-c-d">Contoh Penuh: Input = A + (B - C) * D</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-implementasi-lengkap">Contoh Implementasi Lengkap</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konversi-infix-ke-postfix">Konversi Infix ke Postfix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-infix-ke-prefix">B. Infix ke Prefix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-postfix-ke-infix">C. Postfix ke Infix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-prefix-ke-infix">D. Prefix ke Infix</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-perbandingan">Tabel Perbandingan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-praktis">Aplikasi Praktis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kalkulator-rpn-postfix">1. Kalkulator RPN (Postfix)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expression-evaluator">2. Expression Evaluator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Contoh Implementasi Lengkap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="infix-prefix-dan-postfix-expressions">
+<h1>Infix, Prefix, dan Postfix Expressions<a class="headerlink" href="#infix-prefix-dan-postfix-expressions" title="Link to this heading">#</a></h1>
+<section id="pengertian-notasi-ekspresi">
+<h2>Pengertian Notasi Ekspresi<a class="headerlink" href="#pengertian-notasi-ekspresi" title="Link to this heading">#</a></h2>
+<p>Notasi ekspresi adalah cara untuk menuliskan operasi matematika. Ada tiga macam notasi yang umum digunakan dalam ilmu komputer:</p>
+<ol class="arabic simple">
+<li><p><strong>Infix</strong>: Operasi ditulis di tengah operand (standar matematika)</p></li>
+<li><p><strong>Prefix (Polish Notation)</strong>: Operasi ditulis sebelum operand</p></li>
+<li><p><strong>Postfix (Reverse Polish Notation)</strong>: Operasi ditulis setelah operand</p></li>
+</ol>
+</section>
+<section id="infix-notation-notasi-infix">
+<h2>1. Infix Notation (Notasi Infix)<a class="headerlink" href="#infix-notation-notasi-infix" title="Link to this heading">#</a></h2>
+<section id="pengertian">
+<h3>Pengertian<a class="headerlink" href="#pengertian" title="Link to this heading">#</a></h3>
+<p>Infix adalah notasi yang paling dikenal dan digunakan dalam matematika biasa. Operator ditulis di antara kedua operand.</p>
+</section>
+<section id="format">
+<h3>Format<a class="headerlink" href="#format" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">operand1</span> <span class="n">operator</span> <span class="n">operand2</span>
+</pre></div>
+</div>
+</section>
+<section id="contoh">
+<h3>Contoh<a class="headerlink" href="#contoh" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">2</span> <span class="o">+</span> <span class="mi">3</span>
+<span class="mi">5</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">-</span> <span class="mi">2</span>
+<span class="p">(</span><span class="mi">3</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span>
+<span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">c</span>
+</pre></div>
+</div>
+</section>
+<section id="karakteristik">
+<h3>Karakteristik<a class="headerlink" href="#karakteristik" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Memerlukan tanda kurung untuk menentukan prioritas</p></li>
+<li><p>Memerlukan aturan prioritas operator (precedence)</p></li>
+<li><p>Memerlukan aturan asosiasi (associativity)</p></li>
+<li><p>Format yang paling mudah dipahami manusia</p></li>
+</ul>
+</section>
+<section id="aturan-prioritas-operator-precedence">
+<h3>Aturan Prioritas Operator (Precedence)<a class="headerlink" href="#aturan-prioritas-operator-precedence" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Kurung: <code class="docutils literal notranslate"><span class="pre">(</span> <span class="pre">)</span></code></p></li>
+<li><p>Eksponensial: <code class="docutils literal notranslate"><span class="pre">^</span></code> atau <code class="docutils literal notranslate"><span class="pre">**</span></code></p></li>
+<li><p>Perkalian &amp; Pembagian: <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">%</span></code></p></li>
+<li><p>Penjumlahan &amp; Pengurangan: <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code></p></li>
+</ol>
+</section>
+<section id="aturan-asosiasi-associativity">
+<h3>Aturan Asosiasi (Associativity)<a class="headerlink" href="#aturan-asosiasi-associativity" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Left-to-Right</strong>: <code class="docutils literal notranslate"><span class="pre">+</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">%</span></code> (10 - 5 - 2 = 3)</p></li>
+<li><p><strong>Right-to-Left</strong>: <code class="docutils literal notranslate"><span class="pre">^</span></code> (2 ^ 3 ^ 2 = 2 ^ 9 = 512)</p></li>
+</ul>
+</section>
+</section>
+<section id="prefix-notation-polish-notation">
+<h2>2. Prefix Notation (Polish Notation)<a class="headerlink" href="#prefix-notation-polish-notation" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Pengertian<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Prefix adalah notasi dimana operator ditulis sebelum kedua operand-nya. Dikembangkan oleh Jan Łukasiewicz.</p>
+</section>
+<section id="id2">
+<h3>Format<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">operator</span> <span class="n">operand1</span> <span class="n">operand2</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>Contoh<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>+ 2 3                 → 2 + 3 = 5
+- * 5 4 2            → (5 * 4) - 2 = 18
+* + 3 4 5            → (3 + 4) * 5 = 35
++ * 2 3 / 8 4        → (2 * 3) + (8 / 4) = 8
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Karakteristik<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Tidak memerlukan tanda kurung</p></li>
+<li><p>Tidak memerlukan prioritas operator</p></li>
+<li><p>Lebih sulit dibaca oleh manusia</p></li>
+<li><p>Digunakan dalam beberapa bahasa pemrograman</p></li>
+</ul>
+</section>
+<section id="evaluasi-prefix">
+<h3>Evaluasi Prefix<a class="headerlink" href="#evaluasi-prefix" title="Link to this heading">#</a></h3>
+<p>Untuk mengevaluasi: scan dari <strong>kanan ke kiri</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Algoritma</span><span class="p">:</span>
+<span class="mf">1.</span> <span class="n">Scan</span> <span class="n">ekspresi</span> <span class="n">dari</span> <span class="n">kanan</span> <span class="n">ke</span> <span class="n">kiri</span>
+<span class="mf">2.</span> <span class="n">Jika</span> <span class="n">operand</span><span class="p">,</span> <span class="n">push</span> <span class="n">ke</span> <span class="n">stack</span>
+<span class="mf">3.</span> <span class="n">Jika</span> <span class="n">operator</span><span class="p">,</span> <span class="n">pop</span> <span class="mi">2</span> <span class="n">operand</span><span class="p">,</span> <span class="n">hitung</span><span class="p">,</span> <span class="n">push</span> <span class="n">hasil</span>
+<span class="mf">4.</span> <span class="n">Result</span> <span class="n">ada</span> <span class="n">di</span> <span class="n">top</span> <span class="n">stack</span>
+</pre></div>
+</div>
+<p>Contoh: <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">2</span> <span class="pre">*</span> <span class="pre">3</span> <span class="pre">4</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Scan dari kanan ke kiri:
+4 → push 4, stack: [4]
+3 → push 3, stack: [4, 3]
+* → pop 3, pop 4, hitung 3*4=12, push 12, stack: [12]
+2 → push 2, stack: [12, 2]
++ → pop 2, pop 12, hitung 2+12=14, push 14, stack: [14]
+
+Hasil: 14
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_prefix</span><span class="p">(</span><span class="n">expression</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluasi prefix expression&quot;&quot;&quot;</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">expression</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+    <span class="c1"># Scan dari kanan ke kiri</span>
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">tokens</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">token</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">]:</span>
+            <span class="c1"># Pop operand</span>
+            <span class="n">operand1</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">operand2</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+            <span class="c1"># Hitung</span>
+            <span class="k">if</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">operand1</span> <span class="o">+</span> <span class="n">operand2</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">operand1</span> <span class="o">-</span> <span class="n">operand2</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">operand1</span> <span class="o">*</span> <span class="n">operand2</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">operand1</span> <span class="o">/</span> <span class="n">operand2</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;^&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">operand1</span> <span class="o">**</span> <span class="n">operand2</span>
+
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">stack</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Contoh</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evaluate_prefix</span><span class="p">(</span><span class="s2">&quot;+ 2 * 3 4&quot;</span><span class="p">))</span>  <span class="c1"># 14</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evaluate_prefix</span><span class="p">(</span><span class="s2">&quot;- * 5 4 2&quot;</span><span class="p">))</span>  <span class="c1"># 18</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="postfix-notation-reverse-polish-notation">
+<h2>3. Postfix Notation (Reverse Polish Notation)<a class="headerlink" href="#postfix-notation-reverse-polish-notation" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h3>Pengertian<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>Postfix adalah notasi dimana operator ditulis setelah kedua operand-nya. Juga dikenal sebagai Reverse Polish Notation (RPN).</p>
+</section>
+<section id="id6">
+<h3>Format<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">operand1</span> <span class="n">operand2</span> <span class="n">operator</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3>Contoh<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>2 3 +                 → 2 + 3 = 5
+5 4 * 2 -            → (5 * 4) - 2 = 18
+3 4 + 5 *            → (3 + 4) * 5 = 35
+2 3 * 8 4 / +        → (2 * 3) + (8 / 4) = 8
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h3>Karakteristik<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Tidak memerlukan tanda kurung</p></li>
+<li><p>Tidak memerlukan prioritas operator</p></li>
+<li><p>Lebih mudah dievaluasi komputer</p></li>
+<li><p>Lebih sulit dibaca oleh manusia</p></li>
+<li><p>Digunakan dalam kalkulator HP, Java Virtual Machine</p></li>
+</ul>
+</section>
+<section id="evaluasi-postfix">
+<h3>Evaluasi Postfix<a class="headerlink" href="#evaluasi-postfix" title="Link to this heading">#</a></h3>
+<p>Untuk mengevaluasi: scan dari <strong>kiri ke kanan</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Algoritma</span><span class="p">:</span>
+<span class="mf">1.</span> <span class="n">Scan</span> <span class="n">ekspresi</span> <span class="n">dari</span> <span class="n">kiri</span> <span class="n">ke</span> <span class="n">kanan</span>
+<span class="mf">2.</span> <span class="n">Jika</span> <span class="n">operand</span><span class="p">,</span> <span class="n">push</span> <span class="n">ke</span> <span class="n">stack</span>
+<span class="mf">3.</span> <span class="n">Jika</span> <span class="n">operator</span><span class="p">,</span> <span class="n">pop</span> <span class="mi">2</span> <span class="n">operand</span><span class="p">,</span> <span class="n">hitung</span><span class="p">,</span> <span class="n">push</span> <span class="n">hasil</span>
+<span class="mf">4.</span> <span class="n">Result</span> <span class="n">ada</span> <span class="n">di</span> <span class="n">top</span> <span class="n">stack</span>
+</pre></div>
+</div>
+<p>Contoh: <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">3</span> <span class="pre">4</span> <span class="pre">+</span> <span class="pre">*</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Scan dari kiri ke kanan:
+2 → push 2, stack: [2]
+3 → push 3, stack: [2, 3]
+4 → push 4, stack: [2, 3, 4]
++ → pop 4, pop 3, hitung 3+4=7, push 7, stack: [2, 7]
+* → pop 7, pop 2, hitung 2*7=14, push 14, stack: [14]
+
+Hasil: 14
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_postfix</span><span class="p">(</span><span class="n">expression</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluasi postfix expression&quot;&quot;&quot;</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">expression</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+    <span class="c1"># Scan dari kiri ke kanan</span>
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">token</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">]:</span>
+            <span class="c1"># Pop operand (urutan penting!)</span>
+            <span class="n">operand2</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">operand1</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+            <span class="c1"># Hitung</span>
+            <span class="k">if</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">operand1</span> <span class="o">+</span> <span class="n">operand2</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">operand1</span> <span class="o">-</span> <span class="n">operand2</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">operand1</span> <span class="o">*</span> <span class="n">operand2</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">operand1</span> <span class="o">/</span> <span class="n">operand2</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;^&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">operand1</span> <span class="o">**</span> <span class="n">operand2</span>
+
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">stack</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Contoh</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evaluate_postfix</span><span class="p">(</span><span class="s2">&quot;2 3 +&quot;</span><span class="p">))</span>              <span class="c1"># 5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evaluate_postfix</span><span class="p">(</span><span class="s2">&quot;5 4 * 2 -&quot;</span><span class="p">))</span>         <span class="c1"># 18</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evaluate_postfix</span><span class="p">(</span><span class="s2">&quot;3 4 + 5 *&quot;</span><span class="p">))</span>         <span class="c1"># 35</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evaluate_postfix</span><span class="p">(</span><span class="s2">&quot;2 3 * 8 4 / +&quot;</span><span class="p">))</span>     <span class="c1"># 8</span>
+</pre></div>
+</div>
+</section>
+<section id="contoh-penuh-input-a-b-c-d">
+<h3>Contoh Penuh: Input = A + (B - C) * D<a class="headerlink" href="#contoh-penuh-input-a-b-c-d" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Langkah</span> <span class="o">|</span> <span class="n">Simbol</span> <span class="o">|</span> <span class="n">Stack</span> <span class="o">|</span> <span class="n">Output</span>
+<span class="o">--------|--------|-------|-------</span>
+<span class="mi">1</span>       <span class="o">|</span> <span class="n">A</span>      <span class="o">|</span>       <span class="o">|</span> <span class="n">A</span>
+<span class="mi">2</span>       <span class="o">|</span> <span class="o">+</span>      <span class="o">|</span> <span class="o">+</span>     <span class="o">|</span> <span class="n">A</span>
+<span class="mi">3</span>       <span class="o">|</span> <span class="p">(</span>      <span class="o">|</span> <span class="o">+</span><span class="p">(</span>    <span class="o">|</span> <span class="n">A</span>
+<span class="mi">4</span>       <span class="o">|</span> <span class="n">B</span>      <span class="o">|</span> <span class="o">+</span><span class="p">(</span>    <span class="o">|</span> <span class="n">AB</span>
+<span class="mi">5</span>       <span class="o">|</span> <span class="o">-</span>      <span class="o">|</span> <span class="o">+</span><span class="p">(</span><span class="o">-</span>   <span class="o">|</span> <span class="n">AB</span>
+<span class="mi">6</span>       <span class="o">|</span> <span class="n">C</span>      <span class="o">|</span> <span class="o">+</span><span class="p">(</span><span class="o">-</span>   <span class="o">|</span> <span class="n">ABC</span>
+<span class="mi">7</span>       <span class="o">|</span> <span class="p">)</span>      <span class="o">|</span> <span class="o">+</span>     <span class="o">|</span> <span class="n">ABC</span><span class="o">-</span>
+<span class="mi">8</span>       <span class="o">|</span> <span class="o">*</span>      <span class="o">|</span> <span class="o">+*</span>    <span class="o">|</span> <span class="n">ABC</span><span class="o">-</span>
+<span class="mi">9</span>       <span class="o">|</span> <span class="n">D</span>      <span class="o">|</span> <span class="o">+*</span>    <span class="o">|</span> <span class="n">ABC</span><span class="o">-</span><span class="n">D</span>
+<span class="mi">10</span>      <span class="o">|</span> <span class="p">(</span><span class="n">end</span><span class="p">)</span>  <span class="o">|</span>       <span class="o">|</span> <span class="n">ABC</span><span class="o">-</span><span class="n">D</span><span class="o">*+</span>
+
+<span class="n">Output</span> <span class="n">Akhir</span><span class="p">:</span> <span class="n">A</span> <span class="n">B</span> <span class="n">C</span> <span class="o">-</span> <span class="n">D</span> <span class="o">*</span> <span class="o">+</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">precedence</span><span class="p">(</span><span class="n">op</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Menentukan prioritas operator&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span> <span class="ow">or</span> <span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span> <span class="ow">or</span> <span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;^&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">3</span>
+    <span class="k">return</span> <span class="mi">0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">infToPostf</span><span class="p">(</span><span class="n">infix_expr</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Konversi infix ke postfix&quot;&quot;&quot;</span>
+    <span class="n">operand</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="s2">&quot;D&quot;</span><span class="p">,</span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="s2">&quot;G&quot;</span><span class="p">,</span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="s2">&quot;I&quot;</span><span class="p">,</span><span class="s2">&quot;J&quot;</span><span class="p">,</span><span class="s2">&quot;K&quot;</span><span class="p">,</span><span class="s2">&quot;L&quot;</span><span class="p">,</span><span class="s2">&quot;M&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;O&quot;</span><span class="p">,</span><span class="s2">&quot;P&quot;</span><span class="p">]</span>
+    <span class="n">stk</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">infix_expr</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="s2">&quot; &quot;</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># Jika operand</span>
+        <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">operand</span><span class="p">:</span>
+            <span class="n">output</span> <span class="o">+=</span> <span class="n">char</span>
+
+        <span class="c1"># Jika opening bracket</span>
+        <span class="k">elif</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+            <span class="n">stk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+
+        <span class="c1"># Jika closing bracket</span>
+        <span class="k">elif</span> <span class="n">char</span> <span class="o">==</span> <span class="s1">&#39;)&#39;</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">stk</span> <span class="ow">and</span> <span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="n">stk</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">stk</span><span class="p">:</span>
+                <span class="n">stk</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># Remove opening bracket</span>
+
+        <span class="c1"># Jika operator</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">stk</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">top</span> <span class="o">=</span> <span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">top</span> <span class="o">==</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="k">if</span> <span class="n">precedence</span><span class="p">(</span><span class="n">top</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">precedence</span><span class="p">(</span><span class="n">char</span><span class="p">):</span>
+                    <span class="k">break</span>
+                <span class="n">output</span> <span class="o">+=</span> <span class="n">stk</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">stk</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+
+    <span class="c1"># Pop semua operator yang tersisa</span>
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">stk</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">output</span> <span class="o">+=</span> <span class="n">stk</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">output</span>
+
+<span class="c1"># Contoh</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">infToPostf</span><span class="p">(</span><span class="s2">&quot;A + (B - C) * D&quot;</span><span class="p">))</span>
+<span class="c1"># Output: ABC-D*+</span>
+</pre></div>
+</div>
+</section>
+<section id="contoh-implementasi-lengkap">
+<h3>Contoh Implementasi Lengkap<a class="headerlink" href="#contoh-implementasi-lengkap" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">stack</span><span class="p">():</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">s</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">pop</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">peek</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">isEmpty</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">s</span> <span class="o">==</span> <span class="p">[]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">precedence</span><span class="p">(</span><span class="n">op</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span> <span class="ow">or</span> <span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span> <span class="ow">or</span> <span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">2</span>
+    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s1">&#39;^&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">3</span>
+    <span class="k">return</span> <span class="mi">0</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">infixToPostfix</span><span class="p">(</span><span class="n">infix</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Konversi infix ke postfix dengan proses detail&quot;&quot;&quot;</span>
+    <span class="n">operand</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span><span class="s2">&quot;B&quot;</span><span class="p">,</span><span class="s2">&quot;C&quot;</span><span class="p">,</span><span class="s2">&quot;D&quot;</span><span class="p">,</span><span class="s2">&quot;E&quot;</span><span class="p">,</span><span class="s2">&quot;F&quot;</span><span class="p">,</span><span class="s2">&quot;G&quot;</span><span class="p">,</span><span class="s2">&quot;H&quot;</span><span class="p">,</span><span class="s2">&quot;I&quot;</span><span class="p">,</span><span class="s2">&quot;J&quot;</span><span class="p">,</span><span class="s2">&quot;K&quot;</span><span class="p">,</span><span class="s2">&quot;L&quot;</span><span class="p">,</span><span class="s2">&quot;M&quot;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">,</span><span class="s2">&quot;O&quot;</span><span class="p">,</span><span class="s2">&quot;P&quot;</span><span class="p">]</span>
+    <span class="n">stk</span> <span class="o">=</span> <span class="n">stack</span><span class="p">()</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">steps</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">step_num</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">infix</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s2">&quot; &quot;</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">operand</span><span class="p">:</span>
+            <span class="n">res</span> <span class="o">+=</span> <span class="n">i</span>
+            <span class="n">step_num</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">step_num</span><span class="si">}</span><span class="s2">. Operand &#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&#39;: Output = </span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s2">, Stack = </span><span class="si">{</span><span class="n">stk</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+            <span class="n">push</span><span class="p">(</span><span class="n">stk</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">step_num</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">step_num</span><span class="si">}</span><span class="s2">. Opening bracket &#39;(&#39;: Output = </span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s2">, Stack = </span><span class="si">{</span><span class="n">stk</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s1">&#39;)&#39;</span><span class="p">:</span>
+            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">stk</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+                <span class="n">res</span> <span class="o">+=</span> <span class="n">pop</span><span class="p">(</span><span class="n">stk</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">stk</span><span class="p">:</span>
+                <span class="n">pop</span><span class="p">(</span><span class="n">stk</span><span class="p">)</span>  <span class="c1"># Remove &#39;(&#39;</span>
+            <span class="n">step_num</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">step_num</span><span class="si">}</span><span class="s2">. Closing bracket &#39;)&#39;: Output = </span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s2">, Stack = </span><span class="si">{</span><span class="n">stk</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># Operator</span>
+            <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">stk</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">top</span> <span class="o">=</span> <span class="n">stk</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">top</span> <span class="o">==</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+                    <span class="k">break</span>
+                <span class="k">if</span> <span class="n">precedence</span><span class="p">(</span><span class="n">top</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">precedence</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+                    <span class="k">break</span>
+                <span class="n">res</span> <span class="o">+=</span> <span class="n">pop</span><span class="p">(</span><span class="n">stk</span><span class="p">)</span>
+            <span class="n">push</span><span class="p">(</span><span class="n">stk</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">step_num</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">step_num</span><span class="si">}</span><span class="s2">. Operator &#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&#39;: Output = </span><span class="si">{</span><span class="n">res</span><span class="si">}</span><span class="s2">, Stack = </span><span class="si">{</span><span class="n">stk</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="nb">len</span><span class="p">(</span><span class="n">stk</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">res</span> <span class="o">+=</span> <span class="n">pop</span><span class="p">(</span><span class="n">stk</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">res</span><span class="p">,</span> <span class="n">steps</span>
+
+<span class="c1"># Contoh penggunaan</span>
+<span class="n">result</span><span class="p">,</span> <span class="n">steps</span> <span class="o">=</span> <span class="n">infixToPostfix</span><span class="p">(</span><span class="s2">&quot;A + (B - C) * D&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Proses Konversi ===&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">steps</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">step</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Hasil Akhir: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="konversi-infix-ke-postfix">
+<h2>Konversi Infix ke Postfix<a class="headerlink" href="#konversi-infix-ke-postfix" title="Link to this heading">#</a></h2>
+<p><strong>Algoritma (Shunting Yard)</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">1.</span> <span class="n">Siapkan</span> <span class="n">output</span> <span class="n">queue</span> <span class="n">dan</span> <span class="n">operator</span> <span class="n">stack</span>
+<span class="mf">2.</span> <span class="n">Scan</span> <span class="n">infix</span> <span class="n">dari</span> <span class="n">kiri</span> <span class="n">ke</span> <span class="n">kanan</span>
+<span class="mf">3.</span> <span class="n">Jika</span> <span class="n">operand</span><span class="p">,</span> <span class="n">tambah</span> <span class="n">ke</span> <span class="n">output</span> <span class="n">queue</span>
+<span class="mf">4.</span> <span class="n">Jika</span> <span class="n">operator</span><span class="p">:</span>
+   <span class="o">-</span> <span class="n">Selama</span> <span class="n">ada</span> <span class="n">operator</span> <span class="n">di</span> <span class="n">stack</span> <span class="n">dengan</span> <span class="n">precedence</span> <span class="o">&gt;=</span> <span class="n">operator</span> <span class="n">saat</span> <span class="n">ini</span>
+     <span class="n">dan</span> <span class="n">associativity</span> <span class="n">left</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">right</span><span class="p">,</span> <span class="n">pop</span> <span class="n">dan</span> <span class="n">tambah</span> <span class="n">ke</span> <span class="n">output</span> <span class="n">queue</span>
+   <span class="o">-</span> <span class="n">Push</span> <span class="n">operator</span> <span class="n">saat</span> <span class="n">ini</span> <span class="n">ke</span> <span class="n">stack</span>
+<span class="mf">5.</span> <span class="n">Jika</span> <span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="n">push</span> <span class="n">ke</span> <span class="n">stack</span>
+<span class="mf">6.</span> <span class="n">Jika</span> <span class="s1">&#39;)&#39;</span><span class="p">:</span>
+   <span class="o">-</span> <span class="n">Pop</span> <span class="n">dan</span> <span class="n">tambah</span> <span class="n">ke</span> <span class="n">output</span> <span class="n">queue</span> <span class="n">sampai</span> <span class="n">menemukan</span> <span class="s1">&#39;(&#39;</span>
+   <span class="o">-</span> <span class="n">Pop</span> <span class="s1">&#39;(&#39;</span> <span class="p">(</span><span class="n">jangan</span> <span class="n">tambah</span> <span class="n">ke</span> <span class="n">output</span><span class="p">)</span>
+<span class="mf">7.</span> <span class="n">Pop</span> <span class="n">semua</span> <span class="n">sisa</span> <span class="n">operator</span> <span class="n">di</span> <span class="n">stack</span> <span class="n">ke</span> <span class="n">output</span> <span class="n">queue</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">infix_to_postfix</span><span class="p">(</span><span class="n">infix</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Konversi infix ke postfix menggunakan Shunting Yard&quot;&quot;&quot;</span>
+    <span class="n">precedence</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+    <span class="n">right_associative</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;^&#39;</span><span class="p">}</span>  <span class="c1"># Right-associative operators</span>
+
+    <span class="n">output_queue</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">operator_stack</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">infix</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;)&#39;</span><span class="p">]:</span>
+            <span class="c1"># Operand</span>
+            <span class="n">output_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">precedence</span><span class="p">:</span>
+            <span class="c1"># Operator</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">operator_stack</span> <span class="ow">and</span>
+                   <span class="n">operator_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;(&#39;</span> <span class="ow">and</span>
+                   <span class="n">operator_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">precedence</span><span class="p">):</span>
+
+                <span class="n">top_precedence</span> <span class="o">=</span> <span class="n">precedence</span><span class="p">[</span><span class="n">operator_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+                <span class="n">curr_precedence</span> <span class="o">=</span> <span class="n">precedence</span><span class="p">[</span><span class="n">token</span><span class="p">]</span>
+
+                <span class="k">if</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">right_associative</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">top_precedence</span> <span class="o">&gt;</span> <span class="n">curr_precedence</span><span class="p">:</span>
+                        <span class="n">output_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operator_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">top_precedence</span> <span class="o">&gt;=</span> <span class="n">curr_precedence</span><span class="p">:</span>
+                        <span class="n">output_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operator_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">break</span>
+
+            <span class="n">operator_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+            <span class="n">operator_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;)&#39;</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">operator_stack</span> <span class="ow">and</span> <span class="n">operator_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+                <span class="n">output_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operator_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+            <span class="k">if</span> <span class="n">operator_stack</span><span class="p">:</span>
+                <span class="n">operator_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>  <span class="c1"># Remove &#39;(&#39;</span>
+
+    <span class="c1"># Pop sisa operator</span>
+    <span class="k">while</span> <span class="n">operator_stack</span><span class="p">:</span>
+        <span class="n">output_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operator_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_queue</span><span class="p">)</span>
+
+<span class="c1"># Contoh</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">infix_to_postfix</span><span class="p">(</span><span class="s2">&quot;3 + 4 * 5&quot;</span><span class="p">))</span>      <span class="c1"># 3 4 5 * +</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">infix_to_postfix</span><span class="p">(</span><span class="s2">&quot;( 3 + 4 ) * 5&quot;</span><span class="p">))</span>  <span class="c1"># 3 4 + 5 *</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">infix_to_postfix</span><span class="p">(</span><span class="s2">&quot;10 + 2 * 6&quot;</span><span class="p">))</span>     <span class="c1"># 10 2 6 * +</span>
+</pre></div>
+</div>
+<section id="b-infix-ke-prefix">
+<h3>B. Infix ke Prefix<a class="headerlink" href="#b-infix-ke-prefix" title="Link to this heading">#</a></h3>
+<p><strong>Algoritma</strong>
+Reverse infix → Reverse ( ) → Swap ( ) → Convert to Postfix → Reverse</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">infix_to_prefix</span><span class="p">(</span><span class="n">infix</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Konversi infix ke prefix&quot;&quot;&quot;</span>
+    <span class="c1"># 1. Reverse infix</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">infix</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">reversed_infix</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">tokens</span><span class="p">))</span>
+
+    <span class="c1"># 2. Reverse (swap) parenthesis</span>
+    <span class="n">reversed_infix</span> <span class="o">=</span> <span class="n">reversed_infix</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;TEMP&#39;</span><span class="p">)</span>
+    <span class="n">reversed_infix</span> <span class="o">=</span> <span class="n">reversed_infix</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;)&#39;</span><span class="p">,</span> <span class="s1">&#39;(&#39;</span><span class="p">)</span>
+    <span class="n">reversed_infix</span> <span class="o">=</span> <span class="n">reversed_infix</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;TEMP&#39;</span><span class="p">,</span> <span class="s1">&#39;)&#39;</span><span class="p">)</span>
+
+    <span class="c1"># 3. Konversi ke postfix</span>
+    <span class="n">postfix</span> <span class="o">=</span> <span class="n">infix_to_postfix</span><span class="p">(</span><span class="n">reversed_infix</span><span class="p">)</span>
+
+    <span class="c1"># 4. Reverse kembali</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">postfix</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    <span class="n">prefix</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">reversed</span><span class="p">(</span><span class="n">tokens</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">prefix</span>
+
+<span class="c1"># Contoh</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">infix_to_prefix</span><span class="p">(</span><span class="s2">&quot;3 + 4 * 5&quot;</span><span class="p">))</span>      <span class="c1"># * + 3 4 5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">infix_to_prefix</span><span class="p">(</span><span class="s2">&quot;( 3 + 4 ) * 5&quot;</span><span class="p">))</span>  <span class="c1"># * + 3 4 5</span>
+</pre></div>
+</div>
+</section>
+<section id="c-postfix-ke-infix">
+<h3>C. Postfix ke Infix<a class="headerlink" href="#c-postfix-ke-infix" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">postfix_to_infix</span><span class="p">(</span><span class="n">postfix</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Konversi postfix ke infix&quot;&quot;&quot;</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">postfix</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">token</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">]:</span>
+            <span class="c1"># Pop 2 operand</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="c1"># Push result dengan infix format</span>
+            <span class="n">infix_expr</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;( </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> )&quot;</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">infix_expr</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">stack</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Contoh</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">postfix_to_infix</span><span class="p">(</span><span class="s2">&quot;3 4 5 * +&quot;</span><span class="p">))</span>      <span class="c1"># ( 3 ( 4 5 * ) )</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">postfix_to_infix</span><span class="p">(</span><span class="s2">&quot;3 4 + 5 *&quot;</span><span class="p">))</span>     <span class="c1"># ( ( 3 4 + ) 5 * )</span>
+</pre></div>
+</div>
+</section>
+<section id="d-prefix-ke-infix">
+<h3>D. Prefix ke Infix<a class="headerlink" href="#d-prefix-ke-infix" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">prefix_to_infix</span><span class="p">(</span><span class="n">prefix</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Konversi prefix ke infix&quot;&quot;&quot;</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">prefix</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+    <span class="c1"># Scan dari kanan ke kiri</span>
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">tokens</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">token</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">]:</span>
+            <span class="c1"># Pop 2 operand</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="c1"># Push result dengan infix format</span>
+            <span class="n">infix_expr</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;( </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">token</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> )&quot;</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">infix_expr</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">stack</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Contoh</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prefix_to_infix</span><span class="p">(</span><span class="s2">&quot;+ 3 * 4 5&quot;</span><span class="p">))</span>      <span class="c1"># ( 3 ( 4 5 * ) )</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prefix_to_infix</span><span class="p">(</span><span class="s2">&quot;* + 3 4 5&quot;</span><span class="p">))</span>     <span class="c1"># ( ( 3 4 + ) 5 * )</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tabel-perbandingan">
+<h2>Tabel Perbandingan<a class="headerlink" href="#tabel-perbandingan" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspek</p></th>
+<th class="head"><p>Infix</p></th>
+<th class="head"><p>Prefix</p></th>
+<th class="head"><p>Postfix</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Readability</p></td>
+<td><p>Sangat mudah</p></td>
+<td><p>Sulit</p></td>
+<td><p>Sulit</p></td>
+</tr>
+<tr class="row-odd"><td><p>Precedence</p></td>
+<td><p>Diperlukan</p></td>
+<td><p>Tidak</p></td>
+<td><p>Tidak</p></td>
+</tr>
+<tr class="row-even"><td><p>Parenthesis</p></td>
+<td><p>Diperlukan</p></td>
+<td><p>Tidak</p></td>
+<td><p>Tidak</p></td>
+</tr>
+<tr class="row-odd"><td><p>Evaluasi Manual</p></td>
+<td><p>Sulit</p></td>
+<td><p>Medium</p></td>
+<td><p>Mudah</p></td>
+</tr>
+<tr class="row-even"><td><p>Evaluasi Komputer</p></td>
+<td><p>Sulit</p></td>
+<td><p>Medium</p></td>
+<td><p>Mudah</p></td>
+</tr>
+<tr class="row-odd"><td><p>Digunakan di</p></td>
+<td><p>Matematika</p></td>
+<td><p>Fungsional Programming</p></td>
+<td><p>RPN Kalkulator, JVM</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="aplikasi-praktis">
+<h2>Aplikasi Praktis<a class="headerlink" href="#aplikasi-praktis" title="Link to this heading">#</a></h2>
+<section id="kalkulator-rpn-postfix">
+<h3>1. Kalkulator RPN (Postfix)<a class="headerlink" href="#kalkulator-rpn-postfix" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rpn_calculator</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Simulasi kalkulator RPN&quot;&quot;&quot;</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== RPN Calculator ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Masukkan operand atau operator (atau &#39;q&#39; untuk keluar)&quot;</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">inp</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;&gt;&gt; &quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">inp</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+            <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">inp</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Error: Operand tidak cukup&quot;</span><span class="p">)</span>
+                <span class="k">continue</span>
+
+            <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+            <span class="k">if</span> <span class="n">inp</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+            <span class="k">elif</span> <span class="n">inp</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+            <span class="k">elif</span> <span class="n">inp</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+            <span class="k">elif</span> <span class="n">inp</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Result: </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">, Stack: </span><span class="si">{</span><span class="n">stack</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">inp</span><span class="p">))</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Stack: </span><span class="si">{</span><span class="n">stack</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Invalid input&quot;</span><span class="p">)</span>
+
+<span class="c1"># Jalankan: rpn_calculator()</span>
+</pre></div>
+</div>
+</section>
+<section id="expression-evaluator">
+<h3>2. Expression Evaluator<a class="headerlink" href="#expression-evaluator" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_expression</span><span class="p">(</span><span class="n">expr</span><span class="p">,</span> <span class="n">notation</span><span class="o">=</span><span class="s1">&#39;infix&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluasi ekspresi dalam berbagai notasi&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">notation</span> <span class="o">==</span> <span class="s1">&#39;infix&#39;</span><span class="p">:</span>
+        <span class="c1"># Konversi ke postfix terlebih dahulu</span>
+        <span class="n">postfix</span> <span class="o">=</span> <span class="n">infix_to_postfix</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">evaluate_postfix</span><span class="p">(</span><span class="n">postfix</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">notation</span> <span class="o">==</span> <span class="s1">&#39;prefix&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">evaluate_prefix</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">notation</span> <span class="o">==</span> <span class="s1">&#39;postfix&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">evaluate_postfix</span><span class="p">(</span><span class="n">expr</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="c1"># Contoh</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evaluate_expression</span><span class="p">(</span><span class="s2">&quot;3 + 4 * 5&quot;</span><span class="p">,</span> <span class="s1">&#39;infix&#39;</span><span class="p">))</span>      <span class="c1"># 23</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evaluate_expression</span><span class="p">(</span><span class="s2">&quot;+ 3 * 4 5&quot;</span><span class="p">,</span> <span class="s1">&#39;prefix&#39;</span><span class="p">))</span>     <span class="c1"># 23</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evaluate_expression</span><span class="p">(</span><span class="s2">&quot;3 4 5 * +&quot;</span><span class="p">,</span> <span class="s1">&#39;postfix&#39;</span><span class="p">))</span>    <span class="c1"># 23</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id9">
+<h2>Contoh Implementasi Lengkap<a class="headerlink" href="#id9" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Program: Expression Converter &amp; Evaluator</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ExpressionProcessor</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">precedence</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;+&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_associative</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;^&#39;</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">infix_to_postfix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infix</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Konversi infix ke postfix&quot;&quot;&quot;</span>
+        <span class="n">output_queue</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">operator_stack</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="n">infix</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">token</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">,</span> <span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;)&#39;</span><span class="p">]:</span>
+                <span class="n">output_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">precedence</span><span class="p">:</span>
+                <span class="k">while</span> <span class="p">(</span><span class="n">operator_stack</span> <span class="ow">and</span>
+                       <span class="n">operator_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;(&#39;</span> <span class="ow">and</span>
+                       <span class="n">operator_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">precedence</span><span class="p">):</span>
+                    <span class="n">top_prec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">precedence</span><span class="p">[</span><span class="n">operator_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span>
+                    <span class="n">curr_prec</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">precedence</span><span class="p">[</span><span class="n">token</span><span class="p">]</span>
+
+                    <span class="k">if</span> <span class="n">token</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">right_associative</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">top_prec</span> <span class="o">&gt;</span> <span class="n">curr_prec</span><span class="p">:</span>
+                            <span class="n">output_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operator_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="k">break</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">top_prec</span> <span class="o">&gt;=</span> <span class="n">curr_prec</span><span class="p">:</span>
+                            <span class="n">output_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operator_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="k">break</span>
+
+                <span class="n">operator_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+                <span class="n">operator_stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">token</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;)&#39;</span><span class="p">:</span>
+                <span class="k">while</span> <span class="n">operator_stack</span> <span class="ow">and</span> <span class="n">operator_stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="s1">&#39;(&#39;</span><span class="p">:</span>
+                    <span class="n">output_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operator_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+                <span class="k">if</span> <span class="n">operator_stack</span><span class="p">:</span>
+                    <span class="n">operator_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+        <span class="k">while</span> <span class="n">operator_stack</span><span class="p">:</span>
+            <span class="n">output_queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">operator_stack</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>
+
+        <span class="k">return</span> <span class="s1">&#39; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">output_queue</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_postfix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">postfix</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluasi postfix expression&quot;&quot;&quot;</span>
+        <span class="n">stack</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="n">postfix</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">token</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="s1">&#39;^&#39;</span><span class="p">]:</span>
+                <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+                <span class="k">if</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+                <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+                <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+                <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+                <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;^&#39;</span><span class="p">:</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">**</span> <span class="n">b</span>
+
+                <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>
+
+        <span class="k">return</span> <span class="n">stack</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_infix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">infix</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluasi infix expression&quot;&quot;&quot;</span>
+        <span class="n">postfix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">infix_to_postfix</span><span class="p">(</span><span class="n">infix</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate_postfix</span><span class="p">(</span><span class="n">postfix</span><span class="p">)</span>
+
+<span class="c1"># Contoh penggunaan</span>
+<span class="n">processor</span> <span class="o">=</span> <span class="n">ExpressionProcessor</span><span class="p">()</span>
+
+<span class="c1"># Test</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Expression Processor ===&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Infix: 3 + 4 * 5&quot;</span><span class="p">)</span>
+<span class="n">postfix</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">infix_to_postfix</span><span class="p">(</span><span class="s2">&quot;3 + 4 * 5&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Postfix: </span><span class="si">{</span><span class="n">postfix</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Result: </span><span class="si">{</span><span class="n">processor</span><span class="o">.</span><span class="n">evaluate_infix</span><span class="p">(</span><span class="s1">&#39;3 + 4 * 5&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Infix: ( 3 + 4 ) * 5&quot;</span><span class="p">)</span>
+<span class="n">postfix</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">infix_to_postfix</span><span class="p">(</span><span class="s2">&quot;( 3 + 4 ) * 5&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Postfix: </span><span class="si">{</span><span class="n">postfix</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Result: </span><span class="si">{</span><span class="n">processor</span><span class="o">.</span><span class="n">evaluate_infix</span><span class="p">(</span><span class="s1">&#39;( 3 + 4 ) * 5&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Infix: 10 + 2 * 6 - 3&quot;</span><span class="p">)</span>
+<span class="n">postfix</span> <span class="o">=</span> <span class="n">processor</span><span class="o">.</span><span class="n">infix_to_postfix</span><span class="p">(</span><span class="s2">&quot;10 + 2 * 6 - 3&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Postfix: </span><span class="si">{</span><span class="n">postfix</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Result: </span><span class="si">{</span><span class="n">processor</span><span class="o">.</span><span class="n">evaluate_infix</span><span class="p">(</span><span class="s1">&#39;10 + 2 * 6 - 3&#39;</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="kesimpulan">
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Pemahaman tentang infix, prefix, dan postfix expressions sangat penting dalam ilmu komputer:</p>
+<ol class="arabic simple">
+<li><p><strong>Infix</strong>: Format standar untuk manusia, memerlukan parser yang kompleks</p></li>
+<li><p><strong>Postfix</strong>: Format ideal untuk komputer, mudah dievaluasi dengan stack</p></li>
+<li><p><strong>Prefix</strong>: Format unik, digunakan dalam functional programming</p></li>
+</ol>
+<p>Stack memainkan peran krusial dalam konversi dan evaluasi ekspresi ini, menegaskan pentingnya struktur data dalam pemecahan masalah komputasi.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./md"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="01_queue.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Queue (Antrian)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03_sorting.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Sorting Algorithms (Algoritma Pengurutan)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-notasi-ekspresi">Pengertian Notasi Ekspresi</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#infix-notation-notasi-infix">1. Infix Notation (Notasi Infix)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#format">Format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh">Contoh</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik">Karakteristik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aturan-prioritas-operator-precedence">Aturan Prioritas Operator (Precedence)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aturan-asosiasi-associativity">Aturan Asosiasi (Associativity)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prefix-notation-polish-notation">2. Prefix Notation (Polish Notation)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Contoh</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Karakteristik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-prefix">Evaluasi Prefix</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#postfix-notation-reverse-polish-notation">3. Postfix Notation (Reverse Polish Notation)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Format</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Contoh</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Karakteristik</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluasi-postfix">Evaluasi Postfix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-penuh-input-a-b-c-d">Contoh Penuh: Input = A + (B - C) * D</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-implementasi-lengkap">Contoh Implementasi Lengkap</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#konversi-infix-ke-postfix">Konversi Infix ke Postfix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#b-infix-ke-prefix">B. Infix ke Prefix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#c-postfix-ke-infix">C. Postfix ke Infix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#d-prefix-ke-infix">D. Prefix ke Infix</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tabel-perbandingan">Tabel Perbandingan</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-praktis">Aplikasi Praktis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kalkulator-rpn-postfix">1. Kalkulator RPN (Postfix)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expression-evaluator">2. Expression Evaluator</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Contoh Implementasi Lengkap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Muhammad Zidan Dhikrulloh Perdana
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1160 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Queue (Antrian) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'md/01_queue';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Infix, Prefix, dan Postfix Expressions" href="02_infix_prefix_postfix.html" />
+    <link rel="prev" title="Stack (Tumpukan)" href="00_stack.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_stack.html">Stack (Tumpukan)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Queue (Antrian)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_infix_prefix_postfix.html">Infix, Prefix, dan Postfix Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_sorting.html">Sorting Algorithms (Algoritma Pengurutan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_searching.html">Searching (Pencarian)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_Hashing.html">Materi Hashing</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06_sorting_lanjutan.html">Materi Sorting</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/zeedandp/strukdat.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/zeedandp/strukdat.git/issues/new?title=Issue%20on%20page%20%2Fmd/01_queue.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/md/01_queue.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Queue (Antrian)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-queue">Pengertian Queue</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik-queue">Karakteristik Queue</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operasi-dasar-queue">Operasi Dasar Queue</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enqueue">1. Enqueue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dequeue">2. Dequeue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#front-peek">3. Front/Peek</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rear">4. Rear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isempty">5. isEmpty</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#size">6. Size</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-queue">Implementasi Queue</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-list-python-simple-implementation">Menggunakan List Python (Simple Implementation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-collections-deque-efisien">Menggunakan Collections.deque (Efisien)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-linked-list">Menggunakan Linked List</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jenis-jenis-queue">Jenis-jenis Queue</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-queue-linear-queue">1. Simple Queue (Linear Queue)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circular-queue">2. Circular Queue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#priority-queue">3. Priority Queue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#double-ended-queue-deque">4. Double Ended Queue (Deque)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-queue">Aplikasi Queue</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-printer">1. Proses Printer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customer-service-queue">2. Customer Service Queue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breadth-first-search-bfs">3. Breadth-First Search (BFS)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#round-robin-scheduling-dalam-os">4. Round Robin Scheduling dalam OS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#level-order-traversal-tree">5. Level Order Traversal Tree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#server-request-processing">6. Server Request Processing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-implementasi-lengkap">Contoh Implementasi Lengkap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kompleksitas-queue">Kompleksitas Queue</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan-dan-kelemahan">Keuntungan dan Kelemahan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan">Keuntungan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelemahan">Kelemahan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="queue-antrian">
+<h1>Queue (Antrian)<a class="headerlink" href="#queue-antrian" title="Link to this heading">#</a></h1>
+<section id="pengertian-queue">
+<h2>Pengertian Queue<a class="headerlink" href="#pengertian-queue" title="Link to this heading">#</a></h2>
+<p>Queue adalah struktur data linier yang mengikuti prinsip <strong>FIFO (First In First Out)</strong> atau <strong>FCFS (First Come First Served)</strong>. Artinya, elemen yang masuk paling awal akan dikeluarkan paling pertama. Analogi sederhana adalah antrian di kasir - orang yang antri paling awal akan dilayani paling awal.</p>
+</section>
+<section id="karakteristik-queue">
+<h2>Karakteristik Queue<a class="headerlink" href="#karakteristik-queue" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>FIFO Principle</strong>: Elemen pertama yang masuk adalah yang pertama keluar</p></li>
+<li><p><strong>Two-End Access</strong>: Penambahan di belakang (rear), pengambilan di depan (front)</p></li>
+<li><p><strong>Homogeneous</strong>: Semua elemen bertipe data sama</p></li>
+<li><p><strong>Dynamic Size</strong>: Ukuran dapat berubah sesuai kebutuhan</p></li>
+</ol>
+</section>
+<section id="operasi-dasar-queue">
+<h2>Operasi Dasar Queue<a class="headerlink" href="#operasi-dasar-queue" title="Link to this heading">#</a></h2>
+<section id="enqueue">
+<h3>1. Enqueue<a class="headerlink" href="#enqueue" title="Link to this heading">#</a></h3>
+<p>Menambahkan elemen baru ke belakang (rear) queue.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">enqueue</span><span class="p">(</span><span class="n">queue</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Kompleksitas</strong>: O(1)</p>
+</section>
+<section id="dequeue">
+<h3>2. Dequeue<a class="headerlink" href="#dequeue" title="Link to this heading">#</a></h3>
+<p>Menghapus dan mengembalikan elemen dari depan (front) queue.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dequeue</span><span class="p">(</span><span class="n">queue</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_empty</span><span class="p">(</span><span class="n">queue</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">queue</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Hapus dari indeks 0</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>Kompleksitas</strong>: O(n) - tidak efisien karena pergeseran elemen</p>
+</section>
+<section id="front-peek">
+<h3>3. Front/Peek<a class="headerlink" href="#front-peek" title="Link to this heading">#</a></h3>
+<p>Melihat elemen di depan queue tanpa menghapusnya.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">front</span><span class="p">(</span><span class="n">queue</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_empty</span><span class="p">(</span><span class="n">queue</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">queue</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>Kompleksitas</strong>: O(1)</p>
+</section>
+<section id="rear">
+<h3>4. Rear<a class="headerlink" href="#rear" title="Link to this heading">#</a></h3>
+<p>Melihat elemen di belakang queue.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">rear</span><span class="p">(</span><span class="n">queue</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_empty</span><span class="p">(</span><span class="n">queue</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">queue</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>Kompleksitas</strong>: O(1)</p>
+</section>
+<section id="isempty">
+<h3>5. isEmpty<a class="headerlink" href="#isempty" title="Link to this heading">#</a></h3>
+<p>Mengecek apakah queue kosong.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">is_empty</span><span class="p">(</span><span class="n">queue</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><strong>Kompleksitas</strong>: O(1)</p>
+</section>
+<section id="size">
+<h3>6. Size<a class="headerlink" href="#size" title="Link to this heading">#</a></h3>
+<p>Mengetahui jumlah elemen dalam queue.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="n">queue</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Kompleksitas</strong>: O(1)</p>
+</section>
+</section>
+<section id="implementasi-queue">
+<h2>Implementasi Queue<a class="headerlink" href="#implementasi-queue" title="Link to this heading">#</a></h2>
+<section id="menggunakan-list-python-simple-implementation">
+<h3>Menggunakan List Python (Simple Implementation)<a class="headerlink" href="#menggunakan-list-python-simple-implementation" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Queue</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tambah elemen ke belakang queue&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Hapus dan kembalikan elemen depan&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">front</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Lihat elemen depan&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">rear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Lihat elemen belakang&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cek apakah queue kosong&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Kembalikan ukuran queue&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tampilkan semua elemen&quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Queue:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="menggunakan-collections-deque-efisien">
+<h3>Menggunakan Collections.deque (Efisien)<a class="headerlink" href="#menggunakan-collections-deque-efisien" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">EfficientQueue</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tambah elemen ke belakang&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Hapus dan kembalikan elemen depan&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>  <span class="c1"># O(1) operation</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">front</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Lihat elemen depan&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cek apakah queue kosong&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Kembalikan ukuran queue&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="menggunakan-linked-list">
+<h3>Menggunakan Linked List<a class="headerlink" href="#menggunakan-linked-list" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Node</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">QueueLL</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">front_node</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rear_node</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tambah elemen ke belakang&quot;&quot;&quot;</span>
+        <span class="n">new_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rear_node</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rear_node</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">new_node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rear_node</span> <span class="o">=</span> <span class="n">new_node</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">front_node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">front_node</span> <span class="o">=</span> <span class="n">new_node</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Hapus dan kembalikan elemen depan&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">front_node</span><span class="o">.</span><span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">front_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">front_node</span><span class="o">.</span><span class="n">next</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">front_node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rear_node</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">front</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Lihat elemen depan&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">front_node</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cek apakah queue kosong&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">front_node</span> <span class="ow">is</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tampilkan semua elemen&quot;&quot;&quot;</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">front_node</span>
+        <span class="n">elements</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="n">current</span><span class="p">:</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Queue:&quot;</span><span class="p">,</span> <span class="s2">&quot; -&gt; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">elements</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="jenis-jenis-queue">
+<h2>Jenis-jenis Queue<a class="headerlink" href="#jenis-jenis-queue" title="Link to this heading">#</a></h2>
+<section id="simple-queue-linear-queue">
+<h3>1. Simple Queue (Linear Queue)<a class="headerlink" href="#simple-queue-linear-queue" title="Link to this heading">#</a></h3>
+<p>Queue biasa dengan operasi enqueue di rear dan dequeue di front.</p>
+</section>
+<section id="circular-queue">
+<h3>2. Circular Queue<a class="headerlink" href="#circular-queue" title="Link to this heading">#</a></h3>
+<p>Queue yang terhubung melingkar, menghindari pemborosan ruang.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">CircularQueue</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">max_size</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_size</span> <span class="o">=</span> <span class="n">max_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">max_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">front</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rear</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tambah elemen dengan wrapping&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_full</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">front</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">front</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">rear</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">rear</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Hapus elemen dengan wrapping&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">front</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">front</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">front</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">rear</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">front</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rear</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">front</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">front</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_size</span>
+
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">front</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_full</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_size</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">front</span>
+</pre></div>
+</div>
+</section>
+<section id="priority-queue">
+<h3>3. Priority Queue<a class="headerlink" href="#priority-queue" title="Link to this heading">#</a></h3>
+<p>Setiap elemen memiliki prioritas, dequeue berdasarkan prioritas tertinggi.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">heapq</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PriorityQueue</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">priority</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tambah elemen dengan prioritas (lower = higher priority)&quot;&quot;&quot;</span>
+        <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">,</span> <span class="p">(</span><span class="n">priority</span><span class="p">,</span> <span class="n">item</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Hapus elemen dengan prioritas tertinggi&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</section>
+<section id="double-ended-queue-deque">
+<h3>4. Double Ended Queue (Deque)<a class="headerlink" href="#double-ended-queue-deque" title="Link to this heading">#</a></h3>
+<p>Queue yang bisa enqueue/dequeue dari kedua ujung.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Deque</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_front</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tambah ke depan&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_rear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tambah ke belakang&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_front</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Hapus dari depan&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_rear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Hapus dari belakang&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">()</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="aplikasi-queue">
+<h2>Aplikasi Queue<a class="headerlink" href="#aplikasi-queue" title="Link to this heading">#</a></h2>
+<section id="proses-printer">
+<h3>1. Proses Printer<a class="headerlink" href="#proses-printer" title="Link to this heading">#</a></h3>
+<p>Dokumen yang diprint antri didasarkan FIFO.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">printer_queue_simulation</span><span class="p">():</span>
+    <span class="n">print_queue</span> <span class="o">=</span> <span class="n">EfficientQueue</span><span class="p">()</span>
+
+    <span class="c1"># Dokumen masuk</span>
+    <span class="n">print_queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="s2">&quot;Document1.pdf&quot;</span><span class="p">)</span>
+    <span class="n">print_queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="s2">&quot;Document2.docx&quot;</span><span class="p">)</span>
+    <span class="n">print_queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="s2">&quot;Document3.jpg&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Proses printing</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">print_queue</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">print_queue</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Printing: </span><span class="si">{</span><span class="n">doc</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="customer-service-queue">
+<h3>2. Customer Service Queue<a class="headerlink" href="#customer-service-queue" title="Link to this heading">#</a></h3>
+<p>Pelanggan dilayani berdasarkan FIFO.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">customer_service</span><span class="p">():</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">EfficientQueue</span><span class="p">()</span>
+
+    <span class="c1"># Pelanggan masuk</span>
+    <span class="n">queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="s2">&quot;Customer1&quot;</span><span class="p">)</span>
+    <span class="n">queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="s2">&quot;Customer2&quot;</span><span class="p">)</span>
+    <span class="n">queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="s2">&quot;Customer3&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Pelayanan</span>
+    <span class="n">service_time</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">queue</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+        <span class="n">customer</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Melayani: </span><span class="si">{</span><span class="n">customer</span><span class="si">}</span><span class="s2"> (Time: </span><span class="si">{</span><span class="n">service_time</span><span class="si">}</span><span class="s2">s)&quot;</span><span class="p">)</span>
+        <span class="n">service_time</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</section>
+<section id="breadth-first-search-bfs">
+<h3>3. Breadth-First Search (BFS)<a class="headerlink" href="#breadth-first-search-bfs" title="Link to this heading">#</a></h3>
+<p>Queue digunakan untuk traversal graph/tree secara BFS.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">bfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">EfficientQueue</span><span class="p">()</span>
+    <span class="n">queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+    <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">queue</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="n">neighbor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                <span class="n">queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+                <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="round-robin-scheduling-dalam-os">
+<h3>4. Round Robin Scheduling dalam OS<a class="headerlink" href="#round-robin-scheduling-dalam-os" title="Link to this heading">#</a></h3>
+<p>Process scheduling di sistem operasi.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">round_robin_scheduling</span><span class="p">(</span><span class="n">processes</span><span class="p">,</span> <span class="n">time_slice</span><span class="p">):</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">EfficientQueue</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">process</span> <span class="ow">in</span> <span class="n">processes</span><span class="p">:</span>
+        <span class="n">queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+
+    <span class="n">current_time</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">queue</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+        <span class="n">process</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
+        <span class="n">execute_time</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">process</span><span class="p">[</span><span class="s1">&#39;burst_time&#39;</span><span class="p">],</span> <span class="n">time_slice</span><span class="p">)</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Waktu </span><span class="si">{</span><span class="n">current_time</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">current_time</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">execute_time</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">process</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">current_time</span> <span class="o">+=</span> <span class="n">execute_time</span>
+
+        <span class="n">process</span><span class="p">[</span><span class="s1">&#39;burst_time&#39;</span><span class="p">]</span> <span class="o">-=</span> <span class="n">execute_time</span>
+
+        <span class="k">if</span> <span class="n">process</span><span class="p">[</span><span class="s1">&#39;burst_time&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">process</span><span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2"> selesai&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="level-order-traversal-tree">
+<h3>5. Level Order Traversal Tree<a class="headerlink" href="#level-order-traversal-tree" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">level_order_traversal</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">EfficientQueue</span><span class="p">()</span>
+    <span class="n">queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">queue</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+            <span class="n">queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+            <span class="n">queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="server-request-processing">
+<h3>6. Server Request Processing<a class="headerlink" href="#server-request-processing" title="Link to this heading">#</a></h3>
+<p>Antrian request yang diterima server.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">server_request_processing</span><span class="p">():</span>
+    <span class="n">request_queue</span> <span class="o">=</span> <span class="n">PriorityQueue</span><span class="p">()</span>
+
+    <span class="c1"># Menerima request dengan prioritas</span>
+    <span class="n">request_queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="s2">&quot;Simple Query&quot;</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="n">request_queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="s2">&quot;File Upload&quot;</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">request_queue</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="s2">&quot;Database Update&quot;</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># Proses berdasarkan prioritas</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">request_queue</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+        <span class="n">request</span> <span class="o">=</span> <span class="n">request_queue</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Processing: </span><span class="si">{</span><span class="n">request</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="contoh-implementasi-lengkap">
+<h2>Contoh Implementasi Lengkap<a class="headerlink" href="#contoh-implementasi-lengkap" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Program: Simulasi Antrian Minimarket</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Cashier</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_customer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">customer</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">customer</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">customer</span><span class="si">}</span><span class="s2"> bergabung di antrian </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">serve_customer</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">:</span>
+            <span class="n">customer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> melayani </span><span class="si">{</span><span class="n">customer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">customer</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> sedang menganggur&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">queue_length</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">)</span>
+
+<span class="c1"># Simulasi</span>
+<span class="n">cashier1</span> <span class="o">=</span> <span class="n">Cashier</span><span class="p">(</span><span class="s2">&quot;Kasir 1&quot;</span><span class="p">)</span>
+<span class="n">cashier2</span> <span class="o">=</span> <span class="n">Cashier</span><span class="p">(</span><span class="s2">&quot;Kasir 2&quot;</span><span class="p">)</span>
+
+<span class="c1"># Pelanggan masuk</span>
+<span class="n">cashier1</span><span class="o">.</span><span class="n">add_customer</span><span class="p">(</span><span class="s2">&quot;Pelanggan A&quot;</span><span class="p">)</span>
+<span class="n">cashier1</span><span class="o">.</span><span class="n">add_customer</span><span class="p">(</span><span class="s2">&quot;Pelanggan B&quot;</span><span class="p">)</span>
+<span class="n">cashier2</span><span class="o">.</span><span class="n">add_customer</span><span class="p">(</span><span class="s2">&quot;Pelanggan C&quot;</span><span class="p">)</span>
+<span class="n">cashier1</span><span class="o">.</span><span class="n">add_customer</span><span class="p">(</span><span class="s2">&quot;Pelanggan D&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">--- Mulai Pelayanan ---&quot;</span><span class="p">)</span>
+<span class="n">cashier1</span><span class="o">.</span><span class="n">serve_customer</span><span class="p">()</span>
+<span class="n">cashier2</span><span class="o">.</span><span class="n">serve_customer</span><span class="p">()</span>
+<span class="n">cashier1</span><span class="o">.</span><span class="n">serve_customer</span><span class="p">()</span>
+<span class="n">cashier2</span><span class="o">.</span><span class="n">serve_customer</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Sisa antrian Kasir 1: </span><span class="si">{</span><span class="n">cashier1</span><span class="o">.</span><span class="n">queue_length</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sisa antrian Kasir 2: </span><span class="si">{</span><span class="n">cashier2</span><span class="o">.</span><span class="n">queue_length</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="kompleksitas-queue">
+<h2>Kompleksitas Queue<a class="headerlink" href="#kompleksitas-queue" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operasi</p></th>
+<th class="head"><p>Array (List)</p></th>
+<th class="head"><p>Deque</p></th>
+<th class="head"><p>Linked List</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Enqueue</p></td>
+<td><p>O(1)</p></td>
+<td><p>O(1)</p></td>
+<td><p>O(1)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Dequeue</p></td>
+<td><p>O(n)</p></td>
+<td><p>O(1)</p></td>
+<td><p>O(1)</p></td>
+</tr>
+<tr class="row-even"><td><p>Front</p></td>
+<td><p>O(1)</p></td>
+<td><p>O(1)</p></td>
+<td><p>O(1)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Search</p></td>
+<td><p>O(n)</p></td>
+<td><p>O(n)</p></td>
+<td><p>O(n)</p></td>
+</tr>
+<tr class="row-even"><td><p>Space</p></td>
+<td><p>O(n)</p></td>
+<td><p>O(n)</p></td>
+<td><p>O(n)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Rekomendasi</strong>: Gunakan <code class="docutils literal notranslate"><span class="pre">collections.deque</span></code> untuk implementasi yang efisien!</p>
+</section>
+<section id="keuntungan-dan-kelemahan">
+<h2>Keuntungan dan Kelemahan<a class="headerlink" href="#keuntungan-dan-kelemahan" title="Link to this heading">#</a></h2>
+<section id="keuntungan">
+<h3>Keuntungan<a class="headerlink" href="#keuntungan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Model real-world yang natural (antrian)</p></li>
+<li><p>Operasi O(1) untuk enqueue dan dequeue (dengan deque)</p></li>
+<li><p>Mudah diimplementasikan</p></li>
+<li><p>Cocok untuk scheduling dan buffering</p></li>
+</ul>
+</section>
+<section id="kelemahan">
+<h3>Kelemahan<a class="headerlink" href="#kelemahan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Akses terbatas hanya di depan dan belakang</p></li>
+<li><p>Tidak bisa akses elemen tengah</p></li>
+<li><p>Dequeue dari list biasa adalah O(n)</p></li>
+<li><p>Tidak cocok untuk pencarian random</p></li>
+</ul>
+</section>
+</section>
+<section id="kesimpulan">
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Queue adalah struktur data yang sangat penting dalam sistem computing. Dengan FIFO principle-nya, queue memungkinkan penyelesaian berbagai masalah praktis seperti job scheduling, customer service, dan graph traversal. Untuk implementasi yang efisien, gunakan <code class="docutils literal notranslate"><span class="pre">collections.deque</span></code> daripada list biasa.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./md"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="00_stack.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Stack (Tumpukan)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="02_infix_prefix_postfix.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Infix, Prefix, dan Postfix Expressions</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-queue">Pengertian Queue</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik-queue">Karakteristik Queue</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operasi-dasar-queue">Operasi Dasar Queue</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enqueue">1. Enqueue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dequeue">2. Dequeue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#front-peek">3. Front/Peek</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rear">4. Rear</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isempty">5. isEmpty</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#size">6. Size</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-queue">Implementasi Queue</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-list-python-simple-implementation">Menggunakan List Python (Simple Implementation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-collections-deque-efisien">Menggunakan Collections.deque (Efisien)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-linked-list">Menggunakan Linked List</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jenis-jenis-queue">Jenis-jenis Queue</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-queue-linear-queue">1. Simple Queue (Linear Queue)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#circular-queue">2. Circular Queue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#priority-queue">3. Priority Queue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#double-ended-queue-deque">4. Double Ended Queue (Deque)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-queue">Aplikasi Queue</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proses-printer">1. Proses Printer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customer-service-queue">2. Customer Service Queue</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#breadth-first-search-bfs">3. Breadth-First Search (BFS)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#round-robin-scheduling-dalam-os">4. Round Robin Scheduling dalam OS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#level-order-traversal-tree">5. Level Order Traversal Tree</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#server-request-processing">6. Server Request Processing</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-implementasi-lengkap">Contoh Implementasi Lengkap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kompleksitas-queue">Kompleksitas Queue</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan-dan-kelemahan">Keuntungan dan Kelemahan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan">Keuntungan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelemahan">Kelemahan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Muhammad Zidan Dhikrulloh Perdana
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

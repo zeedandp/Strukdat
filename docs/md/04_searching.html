@@ -1,0 +1,1013 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Searching (Pencarian) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'md/04_searching';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Materi Hashing" href="05_Hashing.html" />
+    <link rel="prev" title="Sorting Algorithms (Algoritma Pengurutan)" href="03_sorting.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="00_stack.html">Stack (Tumpukan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_queue.html">Queue (Antrian)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_infix_prefix_postfix.html">Infix, Prefix, dan Postfix Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_sorting.html">Sorting Algorithms (Algoritma Pengurutan)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Searching (Pencarian)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_Hashing.html">Materi Hashing</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06_sorting_lanjutan.html">Materi Sorting</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/zeedandp/strukdat.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/zeedandp/strukdat.git/issues/new?title=Issue%20on%20page%20%2Fmd/04_searching.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/md/04_searching.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Searching (Pencarian)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequential-search-linear-search">1. Sequential Search (Linear Search)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja">Cara Kerja</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-python">Implementasi Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kompleksitas">Kompleksitas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik">Karakteristik</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-search">2. Binary Search</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Cara Kerja</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Implementasi Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Kompleksitas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Karakteristik</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hashing">3. Hashing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-hash-hash-function">Fungsi Hash (Hash Function)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Implementasi Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hash-function-untuk-string">Hash Function untuk String</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-collision">4. Penanganan <em>Collision</em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-collision">Pengertian Collision</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-penanganan-collision">Metode Penanganan Collision</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-linear-probing">a) Linear Probing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-quadratic-probing">b) Quadratic Probing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-chaining">c) Chaining</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-algoritma-searching">Perbandingan Algoritma Searching</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kapan-menggunakan">Kapan Menggunakan?</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="searching-pencarian">
+<h1>Searching (Pencarian)<a class="headerlink" href="#searching-pencarian" title="Link to this heading">#</a></h1>
+<p>Searching (Pencarian) adalah proses fundamental dalam ilmu komputer untuk menemukan elemen tertentu di dalam sekumpulan data. Koleksi data tersebut bisa berupa array, list, tree, atau struktur data lainnya. Terdapat tiga algoritma pencarian utama yang akan dibahas: <strong>Sequential Search</strong>, <strong>Binary Search</strong>, dan <strong>Hashing</strong>.</p>
+<hr class="docutils" />
+<section id="sequential-search-linear-search">
+<h2>1. Sequential Search (Linear Search)<a class="headerlink" href="#sequential-search-linear-search" title="Link to this heading">#</a></h2>
+<section id="pengertian">
+<h3>Pengertian<a class="headerlink" href="#pengertian" title="Link to this heading">#</a></h3>
+<p>Sequential Search atau Linear Search adalah algoritma pencarian paling sederhana. Data yang dicari dibandingkan satu per satu dengan setiap elemen dalam list, mulai dari indeks pertama hingga indeks terakhir, hingga data ditemukan atau seluruh list telah ditelusuri.</p>
+</section>
+<section id="cara-kerja">
+<h3>Cara Kerja<a class="headerlink" href="#cara-kerja" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Data: [10, 50, 30, 70, 80, 20, 90, 40]
+Cari: 30
+
+Langkah 1: Bandingkan 10 dengan 30 → tidak sama
+Langkah 2: Bandingkan 50 dengan 30 → tidak sama
+Langkah 3: Bandingkan 30 dengan 30 → DITEMUKAN di indeks 2 ✓
+</pre></div>
+</div>
+</section>
+<section id="implementasi-python">
+<h3>Implementasi Python<a class="headerlink" href="#implementasi-python" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">sequential_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">i</span>   <span class="c1"># kembalikan indeks jika ditemukan</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>          <span class="c1"># kembalikan -1 jika tidak ditemukan</span>
+
+<span class="c1"># Contoh penggunaan</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">80</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sequential_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">30</span><span class="p">))</span>   <span class="c1"># Output: 2</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sequential_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">99</span><span class="p">))</span>   <span class="c1"># Output: -1</span>
+</pre></div>
+</div>
+</section>
+<section id="kompleksitas">
+<h3>Kompleksitas<a class="headerlink" href="#kompleksitas" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspek</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Best Case</p></td>
+<td><p>O(1) - data ada di posisi pertama</p></td>
+</tr>
+<tr class="row-odd"><td><p>Average Case</p></td>
+<td><p>O(n)</p></td>
+</tr>
+<tr class="row-even"><td><p>Worst Case</p></td>
+<td><p>O(n) - data di posisi terakhir atau tidak ada</p></td>
+</tr>
+<tr class="row-odd"><td><p>Space Complexity</p></td>
+<td><p>O(1)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="karakteristik">
+<h3>Karakteristik<a class="headerlink" href="#karakteristik" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Bekerja pada data <strong>tidak terurut</strong> maupun terurut</p></li>
+<li><p>Tidak memerlukan pre-processing data</p></li>
+<li><p>Cocok untuk dataset kecil</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="binary-search">
+<h2>2. Binary Search<a class="headerlink" href="#binary-search" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h3>Pengertian<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Binary Search bekerja pada <strong>array yang sudah terurut</strong>. Pencarian dilakukan dengan membagi list menjadi dua grup, lalu membandingkan data yang dicari dengan elemen di indeks tengah. Jika data lebih besar dari nilai tengah, pencarian dilanjutkan hanya di grup kanan; jika lebih kecil, di grup kiri. Proses ini diulang hingga data ditemukan.</p>
+</section>
+<section id="id2">
+<h3>Cara Kerja<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Data (terurut): [2, 5, 8, 12, 16, 23, 38, 56, 72, 91]
+Cari: 23
+
+Iterasi 1: Mid = indeks 4 → nilai 16. 23 &gt; 16 → cari di kanan
+Iterasi 2: Mid = indeks 7 → nilai 56. 23 &lt; 56 → cari di kiri
+Iterasi 3: Mid = indeks 5 → nilai 23. 23 == 23 → DITEMUKAN ✓
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>Implementasi Python<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">while</span> <span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">:</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+
+        <span class="k">if</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mid</span>          <span class="c1"># ditemukan</span>
+        <span class="k">elif</span> <span class="n">arr</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>       <span class="c1"># cari di bagian kanan</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>      <span class="c1"># cari di bagian kiri</span>
+
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>   <span class="c1"># tidak ditemukan</span>
+
+<span class="c1"># Contoh penggunaan</span>
+<span class="n">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">56</span><span class="p">,</span> <span class="mi">72</span><span class="p">,</span> <span class="mi">91</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">23</span><span class="p">))</span>   <span class="c1"># Output: 5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">binary_search</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>   <span class="c1"># Output: -1</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Kompleksitas<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspek</p></th>
+<th class="head"><p>Nilai</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Best Case</p></td>
+<td><p>O(1) - data tepat di posisi tengah</p></td>
+</tr>
+<tr class="row-odd"><td><p>Average Case</p></td>
+<td><p>O(log n)</p></td>
+</tr>
+<tr class="row-even"><td><p>Worst Case</p></td>
+<td><p>O(log n)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Space Complexity</p></td>
+<td><p>O(1) iteratif / O(log n) rekursif</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id5">
+<h3>Karakteristik<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Hanya bekerja pada data <strong>terurut</strong></p></li>
+<li><p>Jauh lebih cepat dari Sequential Search untuk data besar</p></li>
+<li><p>Setiap iterasi memangkas setengah ruang pencarian</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="hashing">
+<h2>3. Hashing<a class="headerlink" href="#hashing" title="Link to this heading">#</a></h2>
+<section id="id6">
+<h3>Pengertian<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>Hashing adalah algoritma pencarian ketiga yang bahkan lebih cepat dari Binary Search. Pencarian akan lebih cepat lagi jika semua data terletak tepat di tempatnya masing-masing, sehingga pencarian hanya memerlukan <strong>satu kali</strong> proses perbandingan saja.</p>
+<p>Di dalam algoritma hashing terdapat beberapa istilah dasar:</p>
+<ul class="simple">
+<li><p><strong>Hash Table</strong> - struktur penyimpanan data yang dirancang untuk memudahkan pencarian. Di Python, tipe data <code class="docutils literal notranslate"><span class="pre">list</span></code> dapat digunakan untuk merepresentasikan hash table.</p></li>
+<li><p><strong>Slot</strong> - posisi (indeks) pada hash table sebagai tempat penyimpanan setiap data. Nilai slot adalah integer mulai dari <code class="docutils literal notranslate"><span class="pre">0</span></code> sampai <code class="docutils literal notranslate"><span class="pre">n</span></code>.</p></li>
+<li><p><strong>Hash Function</strong> - fungsi yang memetakan data ke slot di dalam hash table.</p></li>
+</ul>
+</section>
+<section id="fungsi-hash-hash-function">
+<h3>Fungsi Hash (Hash Function)<a class="headerlink" href="#fungsi-hash-hash-function" title="Link to this heading">#</a></h3>
+<p>Hash function memegang peranan penting dalam algoritma hashing. Fungsi ini menerima nilai data sebagai parameter dan mengembalikan nilai integer (nilai hash) yang merepresentasikan nomor slot.</p>
+<p>Contoh hash function paling sederhana adalah <strong>Remainder Function</strong> (fungsi modulus):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">hash</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">=</span> <span class="n">data</span> <span class="o">%</span> <span class="n">ukuran_tabel</span>
+</pre></div>
+</div>
+<p>Contoh perhitungan dengan ukuran tabel 11:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Data</p></th>
+<th class="head"><p>Nilai Hash (data % 11)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>54</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>26</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>93</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-odd"><td><p>17</p></td>
+<td><p>6</p></td>
+</tr>
+<tr class="row-even"><td><p>77</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>31</p></td>
+<td><p>9</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Hasil penempatan dalam hash table:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Slot</span><span class="p">:</span>  <span class="p">[</span>  <span class="mi">0</span>  <span class="o">|</span>  <span class="mi">1</span>  <span class="o">|</span>  <span class="mi">2</span>  <span class="o">|</span>  <span class="mi">3</span>  <span class="o">|</span>  <span class="mi">4</span>  <span class="o">|</span>  <span class="mi">5</span>  <span class="o">|</span>  <span class="mi">6</span>  <span class="o">|</span>  <span class="mi">7</span>  <span class="o">|</span>  <span class="mi">8</span>  <span class="o">|</span>  <span class="mi">9</span>  <span class="o">|</span> <span class="mi">10</span>  <span class="p">]</span>
+<span class="n">Data</span><span class="p">:</span>  <span class="p">[</span> <span class="mi">77</span>  <span class="o">|</span> <span class="kc">None</span><span class="o">|</span> <span class="kc">None</span><span class="o">|</span> <span class="kc">None</span><span class="o">|</span>  <span class="mi">26</span> <span class="o">|</span>  <span class="mi">93</span> <span class="o">|</span>  <span class="mi">17</span> <span class="o">|</span> <span class="kc">None</span><span class="o">|</span> <span class="kc">None</span><span class="o">|</span>  <span class="mi">31</span> <span class="o">|</span>  <span class="mi">54</span> <span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Load Factor</strong> hash table dihitung dengan:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>λ = jumlahData / ukuranTabel = 6 / 11 ≈ 0.54
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3>Implementasi Python<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">remainderFunction</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">data</span> <span class="o">%</span> <span class="n">num</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">createHashTable</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[</span><span class="s1">&#39;none&#39;</span><span class="p">]</span> <span class="o">*</span> <span class="n">num</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">putData</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">remainderFunction</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+        <span class="n">table</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+    <span class="k">return</span> <span class="n">table</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">searchHash</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
+    <span class="n">hashVal</span> <span class="o">=</span> <span class="n">remainderFunction</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">data</span> <span class="o">==</span> <span class="n">table</span><span class="p">[</span><span class="n">hashVal</span><span class="p">]</span>
+
+<span class="c1"># Contoh penggunaan</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">]</span>
+<span class="n">hashTable</span> <span class="o">=</span> <span class="n">createHashTable</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">hashTable</span> <span class="o">=</span> <span class="n">putData</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">hashTable</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">hashTable</span><span class="p">)</span>
+<span class="c1"># [77, &#39;none&#39;, &#39;none&#39;, &#39;none&#39;, 26, 93, 17, &#39;none&#39;, &#39;none&#39;, 31, 54]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">searchHash</span><span class="p">(</span><span class="mi">93</span><span class="p">,</span> <span class="n">hashTable</span><span class="p">))</span>   <span class="c1"># Output: True</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">searchHash</span><span class="p">(</span><span class="mi">99</span><span class="p">,</span> <span class="n">hashTable</span><span class="p">))</span>   <span class="c1"># Output: False</span>
+</pre></div>
+</div>
+</section>
+<section id="hash-function-untuk-string">
+<h3>Hash Function untuk String<a class="headerlink" href="#hash-function-untuk-string" title="Link to this heading">#</a></h3>
+<p>Jika data berupa string, nilai hash dapat diperoleh dari jumlah nilai ASCII setiap karakter penyusunnya menggunakan fungsi <code class="docutils literal notranslate"><span class="pre">ord()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">strVal</span><span class="p">(</span><span class="n">strData</span><span class="p">):</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">strData</span><span class="p">)):</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="nb">ord</span><span class="p">(</span><span class="n">strData</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">temp</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">strVal</span><span class="p">(</span><span class="s1">&#39;indonesia&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Namun fungsi ini menghasilkan nilai yang sama untuk <strong>anagram</strong> (misalnya <code class="docutils literal notranslate"><span class="pre">'dia'</span></code> dan <code class="docutils literal notranslate"><span class="pre">'adi'</span></code>). Untuk mengatasinya, tambahkan bobot berdasarkan posisi karakter:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">strValWeighted</span><span class="p">(</span><span class="n">strData</span><span class="p">):</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">strData</span><span class="p">)):</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span> <span class="o">+</span> <span class="nb">ord</span><span class="p">(</span><span class="n">strData</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">i</span>   <span class="c1"># bobot = posisi karakter</span>
+    <span class="k">return</span> <span class="n">temp</span>
+
+<span class="c1"># &#39;adi&#39;: a*0 + d*1 + i*2 → berbeda dengan &#39;dia&#39;: d*0 + i*1 + a*2</span>
+</pre></div>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="penanganan-collision">
+<h2>4. Penanganan <em>Collision</em><a class="headerlink" href="#penanganan-collision" title="Link to this heading">#</a></h2>
+<section id="pengertian-collision">
+<h3>Pengertian Collision<a class="headerlink" href="#pengertian-collision" title="Link to this heading">#</a></h3>
+<p>Collision (tabrakan) terjadi ketika dua data yang berbeda menghasilkan nilai hash yang sama, sehingga keduanya menunjuk ke slot yang sama. Contoh: data <code class="docutils literal notranslate"><span class="pre">44</span></code> memiliki hash <code class="docutils literal notranslate"><span class="pre">44</span> <span class="pre">%</span> <span class="pre">11</span> <span class="pre">=</span> <span class="pre">0</span></code>, padahal slot 0 sudah ditempati oleh data <code class="docutils literal notranslate"><span class="pre">77</span></code>.</p>
+<p>Untuk meminimalkan collision, diperlukan <strong>perfect hash function</strong>, yaitu fungsi hash yang memetakan setiap data ke slot yang unik.</p>
+<p>Salah satu contoh perfect hash function adalah <strong>Mid-Square Method</strong>: kuadratkan nilai data, lalu ambil digit bagian tengah, kemudian hitung modulus dengan ukuran tabel.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Contoh: data = 35
+35² = 1225
+Ambil digit tengah: &#39;22&#39;
+hash = 22 % 11 = 0
+</pre></div>
+</div>
+</section>
+<section id="metode-penanganan-collision">
+<h3>Metode Penanganan Collision<a class="headerlink" href="#metode-penanganan-collision" title="Link to this heading">#</a></h3>
+<section id="a-linear-probing">
+<h4>a) Linear Probing<a class="headerlink" href="#a-linear-probing" title="Link to this heading">#</a></h4>
+<p>Jika terjadi collision di slot tertentu, cari slot kosong berikutnya satu per satu secara linear mulai dari posisi collision.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">linearProbing</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">hashTable</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">ind</span>
+    <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">while</span> <span class="n">count</span> <span class="o">!=</span> <span class="n">ind</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">hashTable</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;none&#39;</span><span class="p">:</span>
+            <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
+            <span class="n">hashTable</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">=</span> <span class="n">count</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">hashTable</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">return</span> <span class="n">hashTable</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">putDataWithProbing</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">hashTable</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">remainderFunction</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">hashTable</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">hashTable</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;none&#39;</span><span class="p">:</span>
+            <span class="n">hashTable</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">hashTable</span> <span class="o">=</span> <span class="n">linearProbing</span><span class="p">(</span><span class="n">ind</span><span class="p">,</span> <span class="n">hashTable</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">hashTable</span>
+
+<span class="c1"># Contoh: menambahkan 44, 55, 20 ke data awal</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">hashTable</span> <span class="o">=</span> <span class="n">createHashTable</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">hashTable</span> <span class="o">=</span> <span class="n">putDataWithProbing</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">hashTable</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hashTable</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="b-quadratic-probing">
+<h4>b) Quadratic Probing<a class="headerlink" href="#b-quadratic-probing" title="Link to this heading">#</a></h4>
+<p>Berbeda dengan linear probing yang maju satu per satu, quadratic probing mencari slot dengan menambahkan posisi collision dengan nilai: <strong>1, 3, 5, 7, 9, …</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Slot</span> <span class="n">hasil</span> <span class="nb">hash</span><span class="p">:</span> <span class="mi">0</span> <span class="p">(</span><span class="n">collision</span><span class="p">)</span>
+<span class="n">Coba</span><span class="p">:</span> <span class="mi">0</span><span class="o">+</span><span class="mi">1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">Coba</span><span class="p">:</span> <span class="mi">1</span><span class="o">+</span><span class="mi">3</span> <span class="o">=</span> <span class="mi">4</span>  <span class="p">(</span><span class="n">jika</span> <span class="n">masih</span> <span class="n">collision</span><span class="p">)</span>
+<span class="n">Coba</span><span class="p">:</span> <span class="mi">4</span><span class="o">+</span><span class="mi">5</span> <span class="o">=</span> <span class="mi">9</span>  <span class="p">(</span><span class="n">jika</span> <span class="n">masih</span> <span class="n">collision</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Hasil hash table dengan quadratic probing untuk data <code class="docutils literal notranslate"><span class="pre">[54,</span> <span class="pre">26,</span> <span class="pre">93,</span> <span class="pre">17,</span> <span class="pre">77,</span> <span class="pre">31,</span> <span class="pre">44,</span> <span class="pre">55,</span> <span class="pre">20]</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Slot</span><span class="p">:</span>  <span class="p">[</span>  <span class="mi">0</span>  <span class="o">|</span>  <span class="mi">1</span>  <span class="o">|</span>  <span class="mi">2</span>  <span class="o">|</span>  <span class="mi">3</span>  <span class="o">|</span>  <span class="mi">4</span>  <span class="o">|</span>  <span class="mi">5</span>  <span class="o">|</span>  <span class="mi">6</span>  <span class="o">|</span>  <span class="mi">7</span>  <span class="o">|</span>  <span class="mi">8</span>  <span class="o">|</span>  <span class="mi">9</span>  <span class="o">|</span> <span class="mi">10</span>  <span class="p">]</span>
+<span class="n">Data</span><span class="p">:</span>  <span class="p">[</span> <span class="mi">77</span>  <span class="o">|</span>  <span class="mi">44</span> <span class="o">|</span>  <span class="mi">20</span> <span class="o">|</span>  <span class="mi">55</span> <span class="o">|</span>  <span class="mi">26</span> <span class="o">|</span>  <span class="mi">93</span> <span class="o">|</span>  <span class="mi">17</span> <span class="o">|</span> <span class="kc">None</span><span class="o">|</span> <span class="kc">None</span><span class="o">|</span>  <span class="mi">31</span> <span class="o">|</span>  <span class="mi">54</span> <span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="c-chaining">
+<h4>c) Chaining<a class="headerlink" href="#c-chaining" title="Link to this heading">#</a></h4>
+<p>Pada metode Chaining, setiap slot tidak hanya menyimpan satu data, tetapi bisa menyimpan <strong>beberapa data sekaligus</strong> dalam bentuk linked list atau list bertingkat.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">createChainHashTable</span><span class="p">(</span><span class="n">num</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">[[]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num</span><span class="p">)]</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">putDataChaining</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+        <span class="n">ind</span> <span class="o">=</span> <span class="n">remainderFunction</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+        <span class="n">table</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">table</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">searchChaining</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">table</span><span class="p">):</span>
+    <span class="n">ind</span> <span class="o">=</span> <span class="n">remainderFunction</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">table</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">table</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+
+<span class="c1"># Contoh penggunaan</span>
+<span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">54</span><span class="p">,</span> <span class="mi">26</span><span class="p">,</span> <span class="mi">93</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">77</span><span class="p">,</span> <span class="mi">31</span><span class="p">,</span> <span class="mi">44</span><span class="p">,</span> <span class="mi">55</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+<span class="n">chainTable</span> <span class="o">=</span> <span class="n">createChainHashTable</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">chainTable</span> <span class="o">=</span> <span class="n">putDataChaining</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">chainTable</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">searchChaining</span><span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="n">chainTable</span><span class="p">))</span>   <span class="c1"># Output: True</span>
+</pre></div>
+</div>
+<p>Ilustrasi struktur Chaining:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Slot 0:  [77] → [44] → [55]
+Slot 4:  [26]
+Slot 5:  [93]
+Slot 6:  [17]
+Slot 9:  [31] → [20]
+Slot 10: [54]
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="perbandingan-algoritma-searching">
+<h2>Perbandingan Algoritma Searching<a class="headerlink" href="#perbandingan-algoritma-searching" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Algoritma</p></th>
+<th class="head"><p>Kondisi Data</p></th>
+<th class="head"><p>Best Case</p></th>
+<th class="head"><p>Worst Case</p></th>
+<th class="head"><p>Space</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Sequential Search</p></td>
+<td><p>Tidak harus terurut</p></td>
+<td><p>O(1)</p></td>
+<td><p>O(n)</p></td>
+<td><p>O(1)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Binary Search</p></td>
+<td><p>Harus terurut</p></td>
+<td><p>O(1)</p></td>
+<td><p>O(log n)</p></td>
+<td><p>O(1)</p></td>
+</tr>
+<tr class="row-even"><td><p>Hashing</p></td>
+<td><p>Tidak harus terurut</p></td>
+<td><p>O(1)</p></td>
+<td><p>O(1)*</p></td>
+<td><p>O(n)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<div><p>*Hashing mencapai O(1) jika tidak ada collision. Dengan collision handling, performa bisa menurun tergantung metode yang digunakan.</p>
+</div></blockquote>
+<section id="kapan-menggunakan">
+<h3>Kapan Menggunakan?<a class="headerlink" href="#kapan-menggunakan" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Situasi</p></th>
+<th class="head"><p>Algoritma yang Tepat</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data tidak terurut, dataset kecil</p></td>
+<td><p>Sequential Search</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data sudah terurut, pencarian berulang</p></td>
+<td><p>Binary Search</p></td>
+</tr>
+<tr class="row-even"><td><p>Kecepatan pencarian adalah prioritas utama</p></td>
+<td><p>Hashing</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data dinamis (sering insert/delete)</p></td>
+<td><p>Hashing dengan Chaining</p></td>
+</tr>
+<tr class="row-even"><td><p>Memory terbatas</p></td>
+<td><p>Sequential atau Binary Search</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./md"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03_sorting.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Sorting Algorithms (Algoritma Pengurutan)</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05_Hashing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Materi Hashing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sequential-search-linear-search">1. Sequential Search (Linear Search)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian">Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cara-kerja">Cara Kerja</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-python">Implementasi Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kompleksitas">Kompleksitas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik">Karakteristik</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#binary-search">2. Binary Search</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Cara Kerja</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Implementasi Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Kompleksitas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Karakteristik</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hashing">3. Hashing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Pengertian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fungsi-hash-hash-function">Fungsi Hash (Hash Function)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Implementasi Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hash-function-untuk-string">Hash Function untuk String</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#penanganan-collision">4. Penanganan <em>Collision</em></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-collision">Pengertian Collision</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#metode-penanganan-collision">Metode Penanganan Collision</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#a-linear-probing">a) Linear Probing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#b-quadratic-probing">b) Quadratic Probing</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#c-chaining">c) Chaining</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perbandingan-algoritma-searching">Perbandingan Algoritma Searching</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kapan-menggunakan">Kapan Menggunakan?</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Muhammad Zidan Dhikrulloh Perdana
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

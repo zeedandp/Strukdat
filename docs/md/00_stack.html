@@ -1,0 +1,1073 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Stack (Tumpukan) &#8212; My sample book</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'md/00_stack';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Queue (Antrian)" href="01_queue.html" />
+    <link rel="prev" title="Welcome to your Jupyter Book" href="../intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="My sample book - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="My sample book - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Stack (Tumpukan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="01_queue.html">Queue (Antrian)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_infix_prefix_postfix.html">Infix, Prefix, dan Postfix Expressions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="03_sorting.html">Sorting Algorithms (Algoritma Pengurutan)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04_searching.html">Searching (Pencarian)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05_Hashing.html">Materi Hashing</a></li>
+
+
+
+
+
+<li class="toctree-l1"><a class="reference internal" href="06_sorting_lanjutan.html">Materi Sorting</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/zeedandp/strukdat.git" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/zeedandp/strukdat.git/issues/new?title=Issue%20on%20page%20%2Fmd/00_stack.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/md/00_stack.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Stack (Tumpukan)</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-stack">Pengertian Stack</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik-stack">Karakteristik Stack</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operasi-dasar-stack">Operasi Dasar Stack</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#push">1. Push</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pop">2. Pop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peek">3. Peek</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isempty">4. isEmpty</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#size">5. Size</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-stack">Implementasi Stack</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-array-list-python">Menggunakan Array/List Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-linked-list">Menggunakan Linked List</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-stack">Aplikasi Stack</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#undo-redo-functionality">1. Undo/Redo Functionality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#browser-history">2. Browser History</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-call-stack">3. Function Call Stack</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expression-evaluation-conversion">4. Expression Evaluation &amp; Conversion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#balanced-parentheses-checking">5. Balanced Parentheses Checking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#depth-first-search-dfs">6. Depth-First Search (DFS)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-aplikasi-konversi-desimal-ke-biner">Contoh Aplikasi: Konversi Desimal ke Biner</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-aplikasi-pengecekan-keseimbangan-kurung">Contoh Aplikasi: Pengecekan Keseimbangan Kurung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-implementasi-lengkap">Contoh Implementasi Lengkap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kompleksitas-stack">Kompleksitas Stack</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan-dan-kelemahan">Keuntungan dan Kelemahan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan">Keuntungan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelemahan">Kelemahan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="stack-tumpukan">
+<h1>Stack (Tumpukan)<a class="headerlink" href="#stack-tumpukan" title="Link to this heading">#</a></h1>
+<section id="pengertian-stack">
+<h2>Pengertian Stack<a class="headerlink" href="#pengertian-stack" title="Link to this heading">#</a></h2>
+<p>Stack adalah struktur data linier yang mengikuti prinsip <strong>LIFO (Last In First Out)</strong> atau <strong>FILO (First In Last Out)</strong>. Artinya, elemen yang masuk paling akhir akan dikeluarkan paling pertama. Analogi sederhana adalah tumpukan piring di dapur - piring yang diletakkan paling akhir akan diambil paling pertama.</p>
+</section>
+<section id="karakteristik-stack">
+<h2>Karakteristik Stack<a class="headerlink" href="#karakteristik-stack" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>LIFO Principle</strong>: Elemen terakhir yang masuk adalah yang pertama keluar</p></li>
+<li><p><strong>Sequential Access</strong>: Akses hanya melalui satu ujung (top/puncak)</p></li>
+<li><p><strong>Homogeneous</strong>: Semua elemen bertipe data sama</p></li>
+<li><p><strong>Dynamic Size</strong>: Ukuran dapat bertambah atau berkurang</p></li>
+</ol>
+</section>
+<section id="operasi-dasar-stack">
+<h2>Operasi Dasar Stack<a class="headerlink" href="#operasi-dasar-stack" title="Link to this heading">#</a></h2>
+<section id="push">
+<h3>1. Push<a class="headerlink" href="#push" title="Link to this heading">#</a></h3>
+<p>Menambahkan elemen baru ke puncak stack.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="n">stack</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
+    <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">element</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Kompleksitas</strong>: O(1)</p>
+</section>
+<section id="pop">
+<h3>2. Pop<a class="headerlink" href="#pop" title="Link to this heading">#</a></h3>
+<p>Menghapus dan mengembalikan elemen dari puncak stack.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">pop</span><span class="p">(</span><span class="n">stack</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_empty</span><span class="p">(</span><span class="n">stack</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>Kompleksitas</strong>: O(1)</p>
+</section>
+<section id="peek">
+<h3>3. Peek<a class="headerlink" href="#peek" title="Link to this heading">#</a></h3>
+<p>Melihat elemen puncak stack tanpa menghapusnya.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">peek</span><span class="p">(</span><span class="n">stack</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_empty</span><span class="p">(</span><span class="n">stack</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">stack</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p><strong>Kompleksitas</strong>: O(1)</p>
+</section>
+<section id="isempty">
+<h3>4. isEmpty<a class="headerlink" href="#isempty" title="Link to this heading">#</a></h3>
+<p>Mengecek apakah stack kosong.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">is_empty</span><span class="p">(</span><span class="n">stack</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+</pre></div>
+</div>
+<p><strong>Kompleksitas</strong>: O(1)</p>
+</section>
+<section id="size">
+<h3>5. Size<a class="headerlink" href="#size" title="Link to this heading">#</a></h3>
+<p>Mengetahui jumlah elemen dalam stack.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="n">stack</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="n">stack</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Kompleksitas</strong>: O(1)</p>
+</section>
+</section>
+<section id="implementasi-stack">
+<h2>Implementasi Stack<a class="headerlink" href="#implementasi-stack" title="Link to this heading">#</a></h2>
+<section id="menggunakan-array-list-python">
+<h3>Menggunakan Array/List Python<a class="headerlink" href="#menggunakan-array-list-python" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Stack</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tambah elemen ke stack&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Hapus dan kembalikan elemen top&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Lihat elemen top tanpa hapus&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cek apakah stack kosong&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Kembalikan ukuran stack&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tampilkan semua elemen&quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stack:&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="menggunakan-linked-list">
+<h3>Menggunakan Linked List<a class="headerlink" href="#menggunakan-linked-list" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Node</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">StackLL</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tambah elemen ke stack&quot;&quot;&quot;</span>
+        <span class="n">new_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="n">new_node</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">new_node</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Hapus dan kembalikan elemen top&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">data</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">next</span>
+            <span class="k">return</span> <span class="n">data</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Lihat elemen top&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span><span class="o">.</span><span class="n">data</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Cek apakah stack kosong&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span> <span class="ow">is</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Tampilkan semua elemen&quot;&quot;&quot;</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">top</span>
+        <span class="n">elements</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">while</span> <span class="n">current</span><span class="p">:</span>
+            <span class="n">elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">current</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stack:&quot;</span><span class="p">,</span> <span class="s2">&quot; &lt;- &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">elements</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="aplikasi-stack">
+<h2>Aplikasi Stack<a class="headerlink" href="#aplikasi-stack" title="Link to this heading">#</a></h2>
+<section id="undo-redo-functionality">
+<h3>1. Undo/Redo Functionality<a class="headerlink" href="#undo-redo-functionality" title="Link to this heading">#</a></h3>
+<p>Setiap aksi disimpan dalam stack. Undo mengambil dari top stack.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">undo_system</span><span class="p">():</span>
+    <span class="n">actions</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
+    <span class="n">actions</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;Tulis &#39;Hello&#39;&quot;</span><span class="p">)</span>
+    <span class="n">actions</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;Tulis &#39; World&#39;&quot;</span><span class="p">)</span>
+    <span class="n">actions</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;Format Bold&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Undo:&quot;</span><span class="p">,</span> <span class="n">actions</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>  <span class="c1"># Format Bold</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Undo:&quot;</span><span class="p">,</span> <span class="n">actions</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>  <span class="c1"># Tulis &#39; World&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="browser-history">
+<h3>2. Browser History<a class="headerlink" href="#browser-history" title="Link to this heading">#</a></h3>
+<p>Tombol back menyimpan history di stack.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">browser_history</span><span class="p">():</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
+    <span class="n">history</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;google.com&quot;</span><span class="p">)</span>
+    <span class="n">history</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;github.com&quot;</span><span class="p">)</span>
+    <span class="n">history</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">&quot;stackoverflow.com&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Back:&quot;</span><span class="p">,</span> <span class="n">history</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>  <span class="c1"># stackoverflow.com</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Back:&quot;</span><span class="p">,</span> <span class="n">history</span><span class="o">.</span><span class="n">pop</span><span class="p">())</span>  <span class="c1"># github.com</span>
+</pre></div>
+</div>
+</section>
+<section id="function-call-stack">
+<h3>3. Function Call Stack<a class="headerlink" href="#function-call-stack" title="Link to this heading">#</a></h3>
+<p>Bahasa pemrograman menggunakan stack untuk memanggil fungsi.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">func_a</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;In func_a&quot;</span><span class="p">)</span>
+    <span class="n">func_b</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func_b</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;In func_b&quot;</span><span class="p">)</span>
+    <span class="n">func_c</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">func_c</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;In func_c&quot;</span><span class="p">)</span>
+
+<span class="c1"># Call stack: main -&gt; func_a -&gt; func_b -&gt; func_c</span>
+</pre></div>
+</div>
+</section>
+<section id="expression-evaluation-conversion">
+<h3>4. Expression Evaluation &amp; Conversion<a class="headerlink" href="#expression-evaluation-conversion" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Konversi infix ke postfix</p></li>
+<li><p>Evaluasi postfix expression</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_postfix</span><span class="p">(</span><span class="n">expression</span><span class="p">):</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
+    <span class="n">tokens</span> <span class="o">=</span> <span class="n">expression</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">tokens</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">token</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;+&#39;</span><span class="p">,</span> <span class="s1">&#39;-&#39;</span><span class="p">,</span> <span class="s1">&#39;*&#39;</span><span class="p">,</span> <span class="s1">&#39;/&#39;</span><span class="p">]:</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;+&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;-&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;*&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">b</span>
+            <span class="k">elif</span> <span class="n">token</span> <span class="o">==</span> <span class="s1">&#39;/&#39;</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">a</span> <span class="o">/</span> <span class="n">b</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+<span class="c1"># Contoh: &quot;5 3 +&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evaluate_postfix</span><span class="p">(</span><span class="s2">&quot;5 3 +&quot;</span><span class="p">))</span>  <span class="c1"># 8</span>
+</pre></div>
+</div>
+</section>
+<section id="balanced-parentheses-checking">
+<h3>5. Balanced Parentheses Checking<a class="headerlink" href="#balanced-parentheses-checking" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">is_balanced</span><span class="p">(</span><span class="n">expression</span><span class="p">):</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
+    <span class="n">pairs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;)&#39;</span><span class="p">:</span> <span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;}&#39;</span><span class="p">:</span> <span class="s1">&#39;{&#39;</span><span class="p">,</span> <span class="s1">&#39;]&#39;</span><span class="p">:</span> <span class="s1">&#39;[&#39;</span><span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">expression</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">char</span> <span class="ow">in</span> <span class="s1">&#39;({[&#39;</span><span class="p">:</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">char</span> <span class="ow">in</span> <span class="s1">&#39;)}]&#39;</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">stack</span><span class="o">.</span><span class="n">is_empty</span><span class="p">()</span> <span class="ow">or</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span> <span class="o">!=</span> <span class="n">pairs</span><span class="p">[</span><span class="n">char</span><span class="p">]:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="k">return</span> <span class="n">stack</span><span class="o">.</span><span class="n">is_empty</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">is_balanced</span><span class="p">(</span><span class="s2">&quot;((a+b)*c&quot;</span><span class="p">))</span>  <span class="c1"># False</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">is_balanced</span><span class="p">(</span><span class="s2">&quot;((a+b)*c)&quot;</span><span class="p">))</span>  <span class="c1"># True</span>
+</pre></div>
+</div>
+</section>
+<section id="depth-first-search-dfs">
+<h3>6. Depth-First Search (DFS)<a class="headerlink" href="#depth-first-search-dfs" title="Link to this heading">#</a></h3>
+<p>Stack digunakan untuk traversal graph secara DFS.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="n">Stack</span><span class="p">()</span>
+    <span class="n">stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">stack</span><span class="o">.</span><span class="n">is_empty</span><span class="p">():</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot; &quot;</span><span class="p">)</span>
+            <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]):</span>
+                <span class="k">if</span> <span class="n">neighbor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                    <span class="n">stack</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="contoh-aplikasi-konversi-desimal-ke-biner">
+<h2>Contoh Aplikasi: Konversi Desimal ke Biner<a class="headerlink" href="#contoh-aplikasi-konversi-desimal-ke-biner" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">dec2bin</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Konversi bilangan desimal ke biner menggunakan Stack&quot;&quot;&quot;</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">n</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">stack</span><span class="p">()</span>
+    <span class="n">loopPush</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">loopPop</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># Push semua sisa bagi ke stack</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">push</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">loopPush</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">. Push stack with </span><span class="si">{</span><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> --&gt; </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">n</span> <span class="o">//=</span> <span class="mi">2</span>
+
+    <span class="c1"># Pop dari stack untuk mendapatkan biner</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">isEmpty</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">result</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">pop</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+        <span class="n">loopPop</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">. Pop stack ---&gt; </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="k">return</span> <span class="n">loopPush</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">loopPop</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Biner </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># Contoh penggunaan</span>
+<span class="n">binary</span><span class="p">,</span> <span class="n">process</span> <span class="o">=</span> <span class="n">dec2bin</span><span class="p">(</span><span class="mi">57</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">process</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">binary</span><span class="p">)</span>
+
+<span class="c1"># Output:</span>
+<span class="c1"># 1. Push stack with 1 --&gt; [1]</span>
+<span class="c1"># 2. Push stack with 0 --&gt; [1, 0]</span>
+<span class="c1"># 3. Push stack with 0 --&gt; [1, 0, 0]</span>
+<span class="c1"># 4. Push stack with 1 --&gt; [1, 0, 0, 1]</span>
+<span class="c1"># 5. Push stack with 1 --&gt; [1, 0, 0, 1, 1]</span>
+<span class="c1"># 6. Push stack with 1 --&gt; [1, 0, 0, 1, 1, 1]</span>
+<span class="c1"># 7. Pop stack ---&gt; [1, 0, 0, 1, 1]</span>
+<span class="c1"># ...</span>
+<span class="c1"># Biner 57 = 111001</span>
+</pre></div>
+</div>
+</section>
+<section id="contoh-aplikasi-pengecekan-keseimbangan-kurung">
+<h2>Contoh Aplikasi: Pengecekan Keseimbangan Kurung<a class="headerlink" href="#contoh-aplikasi-pengecekan-keseimbangan-kurung" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">parenthesesCheck</span><span class="p">(</span><span class="n">expression</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Cek penempatan kurung dalam operasi matematika&quot;&quot;&quot;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">stack</span><span class="p">()</span>
+    <span class="n">check</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">proc</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">err</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">num</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">numErr</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">expression</span><span class="p">:</span>
+        <span class="c1"># Jika opening bracket</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="s2">&quot;(&quot;</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="s2">&quot;[&quot;</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="s2">&quot;{&quot;</span><span class="p">:</span>
+            <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">push</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">proc</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">. Push stack with </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2"> --&gt; </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="c1"># Jika closing bracket</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="s2">&quot;)&quot;</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="s2">&quot;]&quot;</span> <span class="ow">or</span> <span class="n">i</span> <span class="o">==</span> <span class="s2">&quot;}&quot;</span><span class="p">:</span>
+            <span class="n">num</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">isEmpty</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+                <span class="n">check</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="n">proc</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">. Pop stack --&gt; </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">chk</span> <span class="o">=</span> <span class="n">pop</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+                <span class="n">proc</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">num</span><span class="si">}</span><span class="s2">. Pop stack --&gt; </span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+                <span class="c1"># Cek kecocokan bracket</span>
+                <span class="k">if</span> <span class="n">chk</span> <span class="o">==</span> <span class="s2">&quot;(&quot;</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="s2">&quot;)&quot;</span><span class="p">:</span>
+                    <span class="n">numErr</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">err</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">numErr</span><span class="si">}</span><span class="s2">. Kurung buka &#39;</span><span class="si">{</span><span class="n">chk</span><span class="si">}</span><span class="s2">&#39; tidak cocok dengan kurung tutup &#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&#39;</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="n">check</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">if</span> <span class="n">chk</span> <span class="o">==</span> <span class="s2">&quot;[&quot;</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="s2">&quot;]&quot;</span><span class="p">:</span>
+                    <span class="n">numErr</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">err</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">numErr</span><span class="si">}</span><span class="s2">. Kurung buka &#39;</span><span class="si">{</span><span class="n">chk</span><span class="si">}</span><span class="s2">&#39; tidak cocok dengan kurung tutup &#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&#39;</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="n">check</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">if</span> <span class="n">chk</span> <span class="o">==</span> <span class="s2">&quot;{&quot;</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="s2">&quot;}&quot;</span><span class="p">:</span>
+                    <span class="n">numErr</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">err</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">numErr</span><span class="si">}</span><span class="s2">. Kurung buka &#39;</span><span class="si">{</span><span class="n">chk</span><span class="si">}</span><span class="s2">&#39; tidak cocok dengan kurung tutup &#39;</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&#39;</span><span class="se">\n</span><span class="s2">&quot;</span>
+                    <span class="n">check</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="c1"># Stack harus kosong jika seimbang</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">isEmpty</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+        <span class="n">check</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">err</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Kurung buka tidak tertutup!</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="k">return</span> <span class="n">check</span><span class="p">,</span> <span class="s2">&quot;Proses cek:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">proc</span><span class="p">,</span> <span class="s2">&quot;Error:</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">err</span>
+
+<span class="c1"># Contoh penggunaan</span>
+<span class="n">result</span><span class="p">,</span> <span class="n">proses</span><span class="p">,</span> <span class="n">error</span> <span class="o">=</span> <span class="n">parenthesesCheck</span><span class="p">(</span><span class="s2">&quot;([4+5]/[9+8]*(3+2))&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">proses</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+
+<span class="c1"># Output:</span>
+<span class="c1"># True</span>
+<span class="c1"># Proses cek:</span>
+<span class="c1"># 1. Push stack with ( --&gt; [&#39;(&#39;]</span>
+<span class="c1"># 2. Push stack with [ --&gt; [&#39;(&#39;, &#39;[&#39;]</span>
+<span class="c1"># 3. Pop stack --&gt; [&#39;(&#39;]</span>
+<span class="c1"># 4. Push stack with [ --&gt; [&#39;(&#39;, &#39;[&#39;]</span>
+<span class="c1"># 5. Pop stack --&gt; [&#39;(&#39;]</span>
+<span class="c1"># 6. Push stack with ( --&gt; [&#39;(&#39;, &#39;(&#39;]</span>
+<span class="c1"># 7. Pop stack --&gt; [&#39;(&#39;]</span>
+<span class="c1"># 8. Pop stack --&gt; []</span>
+<span class="c1"># Error:</span>
+</pre></div>
+</div>
+</section>
+<section id="contoh-implementasi-lengkap">
+<h2>Contoh Implementasi Lengkap<a class="headerlink" href="#contoh-implementasi-lengkap" title="Link to this heading">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Program: Tower of Hanoi menggunakan Stack</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">StackDisplay</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span> <span class="k">else</span> <span class="kc">None</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">display</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">hanoi</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">auxiliary</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">disk</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">destination</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">disk</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pindahkan disk </span><span class="si">{</span><span class="n">disk</span><span class="si">}</span><span class="s2"> dari </span><span class="si">{</span><span class="n">source</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> ke </span><span class="si">{</span><span class="n">destination</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">source</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+        <span class="n">destination</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">source</span><span class="p">,</span> <span class="n">auxiliary</span><span class="p">,</span> <span class="n">destination</span><span class="p">)</span>
+        <span class="n">disk</span> <span class="o">=</span> <span class="n">source</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">destination</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">disk</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Pindahkan disk </span><span class="si">{</span><span class="n">disk</span><span class="si">}</span><span class="s2"> dari </span><span class="si">{</span><span class="n">source</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> ke </span><span class="si">{</span><span class="n">destination</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">source</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+        <span class="n">destination</span><span class="o">.</span><span class="n">display</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">()</span>
+        <span class="n">hanoi</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">auxiliary</span><span class="p">,</span> <span class="n">destination</span><span class="p">,</span> <span class="n">source</span><span class="p">)</span>
+
+<span class="c1"># Jalankan Tower of Hanoi</span>
+<span class="n">rod_a</span> <span class="o">=</span> <span class="n">StackDisplay</span><span class="p">(</span><span class="s2">&quot;Rod A&quot;</span><span class="p">)</span>
+<span class="n">rod_b</span> <span class="o">=</span> <span class="n">StackDisplay</span><span class="p">(</span><span class="s2">&quot;Rod B&quot;</span><span class="p">)</span>
+<span class="n">rod_c</span> <span class="o">=</span> <span class="n">StackDisplay</span><span class="p">(</span><span class="s2">&quot;Rod C&quot;</span><span class="p">)</span>
+
+<span class="c1"># Inisialisasi dengan 3 disk</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">rod_a</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=== Tower of Hanoi dengan 3 Disk ===&quot;</span><span class="p">)</span>
+<span class="n">hanoi</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">rod_a</span><span class="p">,</span> <span class="n">rod_c</span><span class="p">,</span> <span class="n">rod_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="kompleksitas-stack">
+<h2>Kompleksitas Stack<a class="headerlink" href="#kompleksitas-stack" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Operasi</p></th>
+<th class="head"><p>Array</p></th>
+<th class="head"><p>Linked List</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Push</p></td>
+<td><p>O(1)</p></td>
+<td><p>O(1)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Pop</p></td>
+<td><p>O(1)</p></td>
+<td><p>O(1)</p></td>
+</tr>
+<tr class="row-even"><td><p>Peek</p></td>
+<td><p>O(1)</p></td>
+<td><p>O(1)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Search</p></td>
+<td><p>O(n)</p></td>
+<td><p>O(n)</p></td>
+</tr>
+<tr class="row-even"><td><p>Space</p></td>
+<td><p>O(n)</p></td>
+<td><p>O(n)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="keuntungan-dan-kelemahan">
+<h2>Keuntungan dan Kelemahan<a class="headerlink" href="#keuntungan-dan-kelemahan" title="Link to this heading">#</a></h2>
+<section id="keuntungan">
+<h3>Keuntungan<a class="headerlink" href="#keuntungan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Operasi yang simpel dan cepat</p></li>
+<li><p>Menggunakan memori secara efisien</p></li>
+<li><p>Cocok untuk masalah rekursi</p></li>
+<li><p>Implementasi mudah</p></li>
+</ul>
+</section>
+<section id="kelemahan">
+<h3>Kelemahan<a class="headerlink" href="#kelemahan" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Akses terbatas hanya di puncak</p></li>
+<li><p>Tidak bisa akses elemen tengah</p></li>
+<li><p>Tidak cocok untuk pencarian elemen tertentu</p></li>
+<li><p>Ukuran terbatas jika menggunakan array statis</p></li>
+</ul>
+</section>
+</section>
+<section id="kesimpulan">
+<h2>Kesimpulan<a class="headerlink" href="#kesimpulan" title="Link to this heading">#</a></h2>
+<p>Stack adalah struktur data fundamental yang sangat berguna dalam berbagai aplikasi pemrograman. Dengan LIFO principle-nya, stack memungkinkan penyelesaian berbagai masalah dengan elegan, mulai dari undo/redo, browser history, hingga evaluasi ekspresi dan graph traversal.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./md"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Welcome to your Jupyter Book</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="01_queue.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Queue (Antrian)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pengertian-stack">Pengertian Stack</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#karakteristik-stack">Karakteristik Stack</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operasi-dasar-stack">Operasi Dasar Stack</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#push">1. Push</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pop">2. Pop</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peek">3. Peek</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#isempty">4. isEmpty</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#size">5. Size</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementasi-stack">Implementasi Stack</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-array-list-python">Menggunakan Array/List Python</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#menggunakan-linked-list">Menggunakan Linked List</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aplikasi-stack">Aplikasi Stack</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#undo-redo-functionality">1. Undo/Redo Functionality</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#browser-history">2. Browser History</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#function-call-stack">3. Function Call Stack</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#expression-evaluation-conversion">4. Expression Evaluation &amp; Conversion</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#balanced-parentheses-checking">5. Balanced Parentheses Checking</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#depth-first-search-dfs">6. Depth-First Search (DFS)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-aplikasi-konversi-desimal-ke-biner">Contoh Aplikasi: Konversi Desimal ke Biner</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-aplikasi-pengecekan-keseimbangan-kurung">Contoh Aplikasi: Pengecekan Keseimbangan Kurung</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contoh-implementasi-lengkap">Contoh Implementasi Lengkap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kompleksitas-stack">Kompleksitas Stack</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan-dan-kelemahan">Keuntungan dan Kelemahan</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#keuntungan">Keuntungan</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#kelemahan">Kelemahan</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#kesimpulan">Kesimpulan</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Muhammad Zidan Dhikrulloh Perdana
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
