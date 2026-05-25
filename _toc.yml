@@ -1,4 +1,4 @@
-﻿format: jb-book
+format: jb-book
 root: intro
 chapters:
 - file: md/00_stack
@@ -15,3 +15,7 @@ chapters:
   title: "Materi Hashing"
 - file: md/06_sorting_lanjutan
   title: "Materi Sorting"
+- file: md/08_linked_list
+  title: "LINKED LIST (INSERT UNORDERED & ORDERED - PYTHON)"
+- file: md/09_Tree
+  title: "TREE & PARSE TREE"
